@@ -23,6 +23,7 @@
         <module>renren-api</module>
         <module>renren-generator</module>
         <module>renren-check</module>
+        <module>renren-user</module>
     </modules>
 
     <properties>
@@ -47,9 +48,23 @@
         <knife4j.version>2.0.9</knife4j.version>
         <lombok.version>1.18.24</lombok.version>
         <docker.plugin.version>1.1.1</docker.plugin.version>
+        <elasticsearch.version>7.3.0</elasticsearch.version>
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>org.elasticsearch.client</groupId>
+            <artifactId>elasticsearch-rest-high-level-client</artifactId>
+            <version>${elasticsearch.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.elasticsearch</groupId>
+            <artifactId>elasticsearch</artifactId>
+            <version>${elasticsearch.version}</version>
+        </dependency>
+
+
+
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
