@@ -8,6 +8,7 @@
 
 package io.renren.modules.sys.controller;
 
+import io.renren.modules.sys.dto.SysDeptDTO;
 import io.renren.common.annotation.LogOperation;
 import io.renren.common.utils.Result;
 import io.renren.common.validator.AssertUtils;
@@ -15,7 +16,6 @@ import io.renren.common.validator.ValidatorUtils;
 import io.renren.common.validator.group.AddGroup;
 import io.renren.common.validator.group.DefaultGroup;
 import io.renren.common.validator.group.UpdateGroup;
-import io.renren.modules.sys.dto.SysDeptDTO;
 import io.renren.modules.sys.service.SysDeptService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -28,7 +28,7 @@ import java.util.List;
 
 /**
  * 部门管理
- * 
+ *
  * @author Mark sunlightcs@gmail.com
  */
 @RestController
@@ -94,5 +94,5 @@ public class SysDeptController {
 
 		return new Result();
 	}
-	
+
 }

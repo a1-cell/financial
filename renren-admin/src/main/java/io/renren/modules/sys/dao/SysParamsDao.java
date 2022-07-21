@@ -8,8 +8,8 @@
 
 package io.renren.modules.sys.dao;
 
-import io.renren.common.dao.BaseDao;
 import io.renren.modules.sys.entity.SysParamsEntity;
+import io.renren.common.dao.BaseDao;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 

@@ -8,6 +8,7 @@
 
 package io.renren.modules.job.controller;
 
+import io.renren.modules.job.service.ScheduleJobService;
 import io.renren.common.annotation.LogOperation;
 import io.renren.common.constant.Constant;
 import io.renren.common.page.PageData;
@@ -17,7 +18,6 @@ import io.renren.common.validator.group.AddGroup;
 import io.renren.common.validator.group.DefaultGroup;
 import io.renren.common.validator.group.UpdateGroup;
 import io.renren.modules.job.dto.ScheduleJobDTO;
-import io.renren.modules.job.service.ScheduleJobService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -62,7 +62,7 @@ public class ScheduleJobController {
 	@RequiresPermissions("sys:schedule:info")
 	public Result<ScheduleJobDTO> info(@PathVariable("id") Long id){
 		ScheduleJobDTO schedule = scheduleJobService.get(id);
-		
+
 		return new Result<ScheduleJobDTO>().ok(schedule);
 	}
 
@@ -72,9 +72,9 @@ public class ScheduleJobController {
 	@RequiresPermissions("sys:schedule:save")
 	public Result save(@RequestBody ScheduleJobDTO dto){
 		ValidatorUtils.validateEntity(dto, AddGroup.class, DefaultGroup.class);
-		
+
 		scheduleJobService.save(dto);
-		
+
 		return new Result();
 	}
 
@@ -84,9 +84,9 @@ public class ScheduleJobController {
 	@RequiresPermissions("sys:schedule:update")
 	public Result update(@RequestBody ScheduleJobDTO dto){
 		ValidatorUtils.validateEntity(dto, UpdateGroup.class, DefaultGroup.class);
-				
+
 		scheduleJobService.update(dto);
-		
+
 		return new Result();
 	}
 
@@ -96,7 +96,7 @@ public class ScheduleJobController {
 	@RequiresPermissions("sys:schedule:delete")
 	public Result delete(@RequestBody Long[] ids){
 		scheduleJobService.deleteBatch(ids);
-		
+
 		return new Result();
 	}
 
@@ -106,7 +106,7 @@ public class ScheduleJobController {
 	@RequiresPermissions("sys:schedule:run")
 	public Result run(@RequestBody Long[] ids){
 		scheduleJobService.run(ids);
-		
+
 		return new Result();
 	}
 
@@ -116,7 +116,7 @@ public class ScheduleJobController {
 	@RequiresPermissions("sys:schedule:pause")
 	public Result pause(@RequestBody Long[] ids){
 		scheduleJobService.pause(ids);
-		
+
 		return new Result();
 	}
 
@@ -126,7 +126,7 @@ public class ScheduleJobController {
 	@RequiresPermissions("sys:schedule:resume")
 	public Result resume(@RequestBody Long[] ids){
 		scheduleJobService.resume(ids);
-		
+
 		return new Result();
 	}
 

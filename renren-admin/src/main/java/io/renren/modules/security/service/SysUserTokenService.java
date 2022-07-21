@@ -8,13 +8,13 @@
 
 package io.renren.modules.security.service;
 
+import io.renren.modules.security.entity.SysUserTokenEntity;
 import io.renren.common.service.BaseService;
 import io.renren.common.utils.Result;
-import io.renren.modules.security.entity.SysUserTokenEntity;
 
 /**
  * 用户Token
- * 
+ *
  * @author Mark sunlightcs@gmail.com
  */
 public interface SysUserTokenService extends BaseService<SysUserTokenEntity> {

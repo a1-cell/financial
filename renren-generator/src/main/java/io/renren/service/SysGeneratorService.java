@@ -25,7 +25,7 @@ import java.util.zip.ZipOutputStream;
 
 /**
  * 代码生成器
- * 
+ *
  * @author Mark sunlightcs@gmail.com
  */
 @Service
@@ -33,7 +33,7 @@ public class SysGeneratorService {
 	@Autowired
 	private GeneratorDao generatorDao;
 
-	public PageUtils queryList(Query query) {
+	public PageUtils queryList(Query<T> query) {
 		Page<?> page = PageHelper.startPage(query.getPage(), query.getLimit());
 		List<Map<String, Object>> list = generatorDao.queryList(query);
 

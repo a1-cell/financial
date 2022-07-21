@@ -8,15 +8,15 @@
 
 package io.renren.modules.sys.dao;
 
-import io.renren.common.dao.BaseDao;
 import io.renren.modules.sys.entity.SysRoleMenuEntity;
+import io.renren.common.dao.BaseDao;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 
 /**
  * 角色与菜单对应关系
- * 
+ *
  * @author Mark sunlightcs@gmail.com
  */
 @Mapper

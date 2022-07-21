@@ -8,8 +8,8 @@
 
 package io.renren.modules.log.dao;
 
-import io.renren.common.dao.BaseDao;
 import io.renren.modules.log.entity.SysLogOperationEntity;
+import io.renren.common.dao.BaseDao;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
@@ -20,5 +20,5 @@ import org.apache.ibatis.annotations.Mapper;
  */
 @Mapper
 public interface SysLogOperationDao extends BaseDao<SysLogOperationEntity> {
-	
+
 }

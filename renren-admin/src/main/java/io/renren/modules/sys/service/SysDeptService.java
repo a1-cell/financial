@@ -8,16 +8,16 @@
 
 package io.renren.modules.sys.service;
 
-import io.renren.common.service.BaseService;
 import io.renren.modules.sys.dto.SysDeptDTO;
 import io.renren.modules.sys.entity.SysDeptEntity;
+import io.renren.common.service.BaseService;
 
 import java.util.List;
 import java.util.Map;
 
 /**
  * 部门管理
- * 
+ *
  * @author Mark sunlightcs@gmail.com
  */
 public interface SysDeptService extends BaseService<SysDeptEntity> {
