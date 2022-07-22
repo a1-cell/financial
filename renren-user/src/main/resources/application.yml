@@ -3,11 +3,11 @@ server:
 
 spring:
   application:
-    name: exam-user
+    name: renren-user
   cloud:
     nacos:
       discovery:
-        server-addr: localhost:8848
+        server-addr: 120.48.72.211:8848
         namespace: be188a42-2c90-487c-aece-802135d27942
   datasource:
     url: jdbc:mysql://120.48.66.56:3306/bank?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8

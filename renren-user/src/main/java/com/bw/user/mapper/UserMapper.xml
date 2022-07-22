@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper SYSTEM "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.bw.user.mapper.UserMapper">
-
+<select id="userList" resultType="io.renren.common.userEnttiy.User">
+    select * from user
+    <where>
+        <if test="name!=null and name!='' ">
+            and instr(name,#{name})
+        </if>
+    </where>
+</select>
 </mapper>
