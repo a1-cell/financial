@@ -10,12 +10,12 @@ package io.renren.modules.oss.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import io.renren.modules.oss.service.SysOssService;
 import io.renren.common.constant.Constant;
 import io.renren.common.page.PageData;
 import io.renren.common.service.impl.BaseServiceImpl;
 import io.renren.modules.oss.dao.SysOssDao;
 import io.renren.modules.oss.entity.SysOssEntity;
-import io.renren.modules.oss.service.SysOssService;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;

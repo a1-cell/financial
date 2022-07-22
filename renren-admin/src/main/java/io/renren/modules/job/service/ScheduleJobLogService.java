@@ -8,10 +8,10 @@
 
 package io.renren.modules.job.service;
 
+import io.renren.modules.job.entity.ScheduleJobLogEntity;
 import io.renren.common.page.PageData;
 import io.renren.common.service.BaseService;
 import io.renren.modules.job.dto.ScheduleJobLogDTO;
-import io.renren.modules.job.entity.ScheduleJobLogEntity;
 
 import java.util.Map;
 

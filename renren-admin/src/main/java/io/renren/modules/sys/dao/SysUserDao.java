@@ -8,8 +8,8 @@
 
 package io.renren.modules.sys.dao;
 
-import io.renren.common.dao.BaseDao;
 import io.renren.modules.sys.entity.SysUserEntity;
+import io.renren.common.dao.BaseDao;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -18,7 +18,7 @@ import java.util.Map;
 
 /**
  * 系统用户
- * 
+ *
  * @author Mark sunlightcs@gmail.com
  */
 @Mapper

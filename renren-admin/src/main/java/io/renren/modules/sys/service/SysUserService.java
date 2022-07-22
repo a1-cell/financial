@@ -8,10 +8,10 @@
 
 package io.renren.modules.sys.service;
 
-import io.renren.common.page.PageData;
-import io.renren.common.service.BaseService;
 import io.renren.modules.sys.dto.SysUserDTO;
 import io.renren.modules.sys.entity.SysUserEntity;
+import io.renren.common.page.PageData;
+import io.renren.common.service.BaseService;
 
 import java.util.List;
 import java.util.Map;
@@ -19,7 +19,7 @@ import java.util.Map;
 
 /**
  * 系统用户
- * 
+ *
  * @author Mark sunlightcs@gmail.com
  */
 public interface SysUserService extends BaseService<SysUserEntity> {

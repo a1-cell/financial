@@ -22,6 +22,7 @@
         <module>renren-admin</module>
         <module>renren-api</module>
         <module>renren-generator</module>
+        <module>renren-check</module>
         <module>renren-user</module>
     </modules>
 

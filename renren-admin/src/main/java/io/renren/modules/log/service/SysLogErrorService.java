@@ -9,10 +9,10 @@
 package io.renren.modules.log.service;
 
 
+import io.renren.modules.log.entity.SysLogErrorEntity;
 import io.renren.common.page.PageData;
 import io.renren.common.service.BaseService;
 import io.renren.modules.log.dto.SysLogErrorDTO;
-import io.renren.modules.log.entity.SysLogErrorEntity;
 
 import java.util.List;
 import java.util.Map;

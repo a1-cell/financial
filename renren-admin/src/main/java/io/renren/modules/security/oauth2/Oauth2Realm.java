@@ -8,13 +8,13 @@
 
 package io.renren.modules.security.oauth2;
 
+import io.renren.modules.security.entity.SysUserTokenEntity;
+import io.renren.modules.security.service.ShiroService;
+import io.renren.modules.sys.entity.SysUserEntity;
 import io.renren.common.exception.ErrorCode;
 import io.renren.common.utils.ConvertUtils;
 import io.renren.common.utils.MessageUtils;
 import io.renren.modules.security.user.UserDetail;
-import io.renren.modules.sys.entity.SysUserEntity;
-import io.renren.modules.security.entity.SysUserTokenEntity;
-import io.renren.modules.security.service.ShiroService;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
