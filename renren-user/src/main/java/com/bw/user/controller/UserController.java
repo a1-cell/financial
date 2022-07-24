@@ -1,25 +1,32 @@
 package com.bw.user.controller;
 
-import com.bw.user.service.UserService;
-import io.renren.common.userEnttiy.User;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
+import com.bw.user.service.UserService;
+import io.renren.common.result.Result;
+import io.renren.common.userEnttiy.User;
+import org.apache.shiro.crypto.hash.SimpleHash;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 @RestController
 @RequestMapping("/v1")
+@CrossOrigin
 public class UserController {
     @Autowired
     private UserService userService;
 
     @GetMapping("/user")
-    public List<User> userList(){
+    public Result userList(){
         List<User> list=userService.userList();
-        return list;
+        return new Result(true,"查询成功",list);
+    }
+    @PostMapping("/adduser")
+    public Result addUser(@RequestBody User user) throws NoSuchAlgorithmException {
+        return  userService.addUser(user);
     }
 
 }

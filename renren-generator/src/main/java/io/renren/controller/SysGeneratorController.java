@@ -40,7 +40,7 @@ public class SysGeneratorController {
 	@ResponseBody
 	@RequestMapping("/list")
 	public R list(@RequestParam Map<String, Object> params){
-		PageUtils pageUtil = sysGeneratorService.queryList(new Query<T>(params));
+		PageUtils pageUtil = sysGeneratorService.queryList(new Query(params));
 
 		return R.ok().put("page", pageUtil);
 	}
