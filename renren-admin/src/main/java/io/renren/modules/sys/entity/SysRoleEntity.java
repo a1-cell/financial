@@ -19,7 +19,7 @@ import java.util.Date;
 
 /**
  * 角色
- * 
+ *
  * @author Mark sunlightcs@gmail.com
  */
 @Data

@@ -10,16 +10,17 @@ package io.renren.modules.sys.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import io.renren.common.constant.Constant;
-import io.renren.common.page.PageData;
-import io.renren.common.service.impl.BaseServiceImpl;
-import io.renren.common.utils.ConvertUtils;
 import io.renren.modules.security.user.SecurityUser;
 import io.renren.modules.security.user.UserDetail;
 import io.renren.modules.sys.dao.SysRoleDao;
 import io.renren.modules.sys.dto.SysRoleDTO;
-import io.renren.modules.sys.entity.SysRoleEntity;
 import io.renren.modules.sys.enums.SuperAdminEnum;
+import io.renren.modules.sys.service.*;
+import io.renren.common.constant.Constant;
+import io.renren.common.page.PageData;
+import io.renren.common.service.impl.BaseServiceImpl;
+import io.renren.common.utils.ConvertUtils;
+import io.renren.modules.sys.entity.SysRoleEntity;
 import io.renren.modules.sys.service.*;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +33,7 @@ import java.util.Map;
 
 /**
  * 角色
- * 
+ *
  * @author Mark sunlightcs@gmail.com
  */
 @Service

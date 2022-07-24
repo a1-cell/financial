@@ -8,14 +8,14 @@
 
 package io.renren.modules.security.dao;
 
-import io.renren.common.dao.BaseDao;
 import io.renren.modules.security.entity.SysUserTokenEntity;
+import io.renren.common.dao.BaseDao;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 /**
  * 系统用户Token
- * 
+ *
  * @author Mark sunlightcs@gmail.com
  */
 @Mapper
