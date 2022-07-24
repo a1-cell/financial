@@ -26,6 +26,7 @@ public class UserController {
     }
     @PostMapping("/adduser")
     public Result addUser(@RequestBody User user) throws NoSuchAlgorithmException {
+        System.out.println("0");
         return  userService.addUser(user);
     }
 
