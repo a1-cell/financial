@@ -13,11 +13,20 @@ public class ProductService {
     @Autowired(required = false)
     private ProductMapper mapper;
 
+    /**
+     * 产品添加
+     * @param product
+     * @return
+     */
     public boolean addProduct(Product product) {
         mapper.addProduct(product);
         return new Result().success();
     }
 
+    /**
+     * 查询所有产品信息
+     * @return
+     */
     public List<Product> getList() {
         return mapper.getList();
     }
