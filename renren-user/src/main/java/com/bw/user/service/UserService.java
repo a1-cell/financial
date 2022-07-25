@@ -31,4 +31,5 @@ public class UserService {
         userMapper.addUser(user);
         return new Result(true,"注册成功!","");
     }
+
 }
