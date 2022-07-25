@@ -1,5 +1,5 @@
 FROM java:8
-EXPOSE 8080
+EXPOSE 8083
 
 VOLUME /tmp
 ADD renren-admin.jar /app.jar

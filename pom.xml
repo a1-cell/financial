@@ -26,6 +26,7 @@
         <module>renren-check</module>
         <module>renren-user</module>
         <module>renren-borrow</module>
+        <module>renren-baidu</module>
     </modules>
 
     <properties>

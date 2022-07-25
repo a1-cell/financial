@@ -1,4 +1,4 @@
-package io.renren.controller;
+package com.renren.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.http.HttpEntity;
@@ -30,11 +30,11 @@ public class BaiduController {
         HttpClient httpClient = HttpClients.createDefault();
         HttpPost post = new HttpPost(tokenUrl);
         List<NameValuePair> tokenParams = new ArrayList<>();
-        tokenParams.add(new BasicNameValuePair("grant_type","authorization_code"));
-        tokenParams.add(new BasicNameValuePair("code",code));
-        tokenParams.add(new BasicNameValuePair("client_id","0KarGjdTCIDKlbifVwmSLG1s"));
-        tokenParams.add(new BasicNameValuePair("client_secret","IbPzGZEbXmOMbi8y6vSnKA6IWXIiDzxz"));
-        tokenParams.add(new BasicNameValuePair("redirect_uri","http://localhost/baidu"));
+        tokenParams.add(new BasicNameValuePair("grant_type", "authorization_code"));
+        tokenParams.add(new BasicNameValuePair("code", code));
+        tokenParams.add(new BasicNameValuePair("client_id", "0KarGjdTCIDKlbifVwmSLG1s"));
+        tokenParams.add(new BasicNameValuePair("client_secret", "IbPzGZEbXmOMbi8y6vSnKA6IWXIiDzxz"));
+        tokenParams.add(new BasicNameValuePair("redirect_uri", "http://localhost/baidu"));
         HttpEntity tokenRequestEntity = new UrlEncodedFormEntity(tokenParams);
         post.setEntity(tokenRequestEntity);
         HttpResponse tokenResponse = httpClient.execute(post);
@@ -48,7 +48,7 @@ public class BaiduController {
         String infoUrl = "https://openapi.baidu.com/rest/2.0/passport/users/getLoggedInUser?";
         HttpPost post2 = new HttpPost(infoUrl);
         List<NameValuePair> infoParams = new ArrayList<>();
-        infoParams.add(new BasicNameValuePair("access_token",access_token));
+        infoParams.add(new BasicNameValuePair("access_token", access_token));
         HttpEntity infoRequestEntity = new UrlEncodedFormEntity(infoParams);
         post2.setEntity(infoRequestEntity);
         HttpResponse infoResponse = httpClient.execute(post2);
