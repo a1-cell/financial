@@ -5,13 +5,12 @@ import com.bw.borrow.utils.Filetomutportfile;
 import com.bw.borrow.utils.ImageWatermarkUtils;
 import com.bw.borrow.utils.OSSUploadUtil;
 
+import io.renren.common.borrow.Borrow;
+import io.renren.common.result.Result;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItem;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
@@ -21,9 +20,37 @@ import java.util.UUID;
 @RequestMapping("/v1")
 @RestController
 @CrossOrigin
-public class BorrowController {
+public class BorrowController extends Thread{
     @Autowired
     BorrowService borrowService;
+
+    @Override
+    public void run() {
+        for (int i=0;i<10;i++){
+            System.out.println(i);
+        }
+    }
+
+    //借款
+    @PostMapping("/add")
+    public Result addBorrow(@RequestBody Borrow borrow){
+
+        BorrowController borrowController = new BorrowController();
+        borrowController.run();
+        //设置用户id
+        borrow.setUserid(3);
+        borrow.setBorrowRen("mlove");
+        borrow.setTid(0);
+        borrow.setTtid(0);
+        borrowService.add(borrow);
+        return new Result(true,"借款成功!","");
+    }
+
+    @PostMapping("/upload2")
+    public String upload2(MultipartFile file) throws IOException {
+        String upload = OSSUploadUtil.upload(file);
+        return upload;
+    }
     //上传图片
     @PostMapping("/upload")
     public String upload(MultipartFile file) throws Exception {

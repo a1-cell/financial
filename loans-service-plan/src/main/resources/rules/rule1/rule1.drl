@@ -1,0 +1,170 @@
+package rules.rule1;
+import com.loans.pojo.CreditMessage;
+
+//黑名单次数规则
+rule "score_1"
+when
+    $p : CreditMessage(blacklist<=2 )
+then
+    modify($p){
+        setCreditPoints($p.getCreditPoints()+50)
+    }
+    System.out.println("黑名单次数小于等于2加50分");
+end
+
+rule "score_2"
+when
+    $p : CreditMessage(blacklist>=3 && blacklist<5)
+then
+    modify($p){
+        setCreditPoints($p.getCreditPoints())
+    }
+    System.out.println("黑名单次数大于等于3小于5不变");
+end
+
+rule "score_3"
+when
+    $p : CreditMessage(blacklist>=5 )
+then
+    modify($p){
+        setCreditPoints($p.getCreditPoints()-50)
+    }
+    System.out.println("黑名单次数大于等于5减50分");
+end
+
+//逾期次数规则
+rule "score_4"
+when
+    $p : CreditMessage(overdue<=2 )
+then
+    modify($p){
+        setCreditPoints($p.getCreditPoints()+50)
+    }
+    System.out.println("逾期次数小于等于2加50分");
+end
+
+rule "score_5"
+when
+    $p : CreditMessage(overdue>=3 && overdue<5)
+then
+    modify($p){
+        setCreditPoints($p.getCreditPoints())
+    }
+    System.out.println("逾期次数次数大于等于3小于5信誉分不变");
+end
+
+rule "score_6"
+when
+    $p : CreditMessage(overdue>=5 )
+then
+    modify($p){
+        setCreditPoints($p.getCreditPoints()-50)
+    }
+    System.out.println("逾期次数大于等于5减50分");
+end
+
+//查询次数规则
+rule "score_7"
+when
+    $p : CreditMessage(query<5 )
+then
+    modify($p){
+        setCreditPoints($p.getCreditPoints()+50)
+    }
+    System.out.println("查询次数小于5加50分");
+end
+
+rule "score_8"
+when
+    $p : CreditMessage(query>=5 && query<10)
+then
+    modify($p){
+        setCreditPoints($p.getCreditPoints())
+    }
+    System.out.println("查询次数次数大于等于5小于10信誉分不变");
+end
+
+rule "score_9"
+when
+    $p : CreditMessage(query>=10 )
+then
+    modify($p){
+        setCreditPoints($p.getCreditPoints()-50)
+    }
+    System.out.println("查询次数大于等于10减50分");
+end
+
+
+
+//欠款规则
+rule "score_10"
+when
+    $p : CreditMessage(debtMoney<50000 )
+then
+    modify($p){
+        setCreditPoints($p.getCreditPoints()+50)
+    }
+    System.out.println("欠款小于5万加50分");
+end
+
+rule "score_11"
+when
+    $p : CreditMessage(debtMoney>=50000 && debtMoney<100000)
+then
+    modify($p){
+        setCreditPoints($p.getCreditPoints())
+    }
+    System.out.println("欠款大于等于5万小于10万信誉分不变");
+end
+
+rule "score_12"
+when
+    $p : CreditMessage(debtMoney>=100000 )
+then
+    modify($p){
+        setCreditPoints($p.getCreditPoints()-50)
+    }
+    System.out.println("欠款大于等于10万减50分");
+end
+
+
+//根据信誉分评级规则
+rule "score_13"
+when
+    $p : CreditMessage(creditPoints>=600 )
+then
+    modify($p){
+        setCreditLevel("A")
+    }
+    System.out.println("信誉分大于等于600评级A");
+end
+
+rule "score_14"
+when
+    $p : CreditMessage(creditPoints>=500 && creditPoints<600)
+then
+    modify($p){
+        setCreditLevel("B")
+    }
+    System.out.println("信誉分大于等于500小于600评级B");
+end
+
+rule "score_15"
+when
+    $p : CreditMessage(creditPoints>=400 && creditPoints<500)
+then
+    modify($p){
+        setCreditLevel("C")
+    }
+    System.out.println("信誉分大于等于400小于500评级C");
+end
+
+rule "score_16"
+when
+    $p : CreditMessage(creditPoints<400 )
+then
+    modify($p){
+        setCreditLevel("D")
+    }
+    System.out.println("信誉分小于400评级D");
+end
