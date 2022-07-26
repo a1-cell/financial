@@ -6,6 +6,8 @@ import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
 public interface BorrowMapper {
-    @Insert("insert into tb_borrow set borrow_name=#{borrowName},borrow_ren=#{borrowRen},borrow_money=#{borrowMoney},interest_rate=#{interestRate},periods=#{periods},back_way=#{backWay},borrow_time=now(),borrow_status=1,behoof=#{behoof},userid=#{userid},card_url1=#{cardUrl1},card_url2=#{cardUrl2},pid=#{pid},tid=#{tid},ttid=#{ttid}")
+   // @Insert("insert into tb_borrow set borrow_name=#{borrowName},borrow_ren=#{borrowRen},borrow_money=#{borrowMoney},interest_rate=#{interestRate},periods=#{periods},back_way=#{backWay},borrow_time=now(),borrow_status=1,behoof=#{behoof},userid=#{userid},card_url1=#{cardUrl1},card_url2=#{cardUrl2},pid=#{pid},tid=#{tid},ttid=#{ttid},companyname=#{companyname},companyaddress=#{companyaddress},companyphone=#{companyphone}")
     void add(Borrow borrow);
+    @Insert("insert into pawn set borrow_id=#{borrowId},housename=#{housename},houseaddress=#{houseaddress},houseUrl=#{houseUrl}")
+    void addPawn(Borrow borrow);
 }

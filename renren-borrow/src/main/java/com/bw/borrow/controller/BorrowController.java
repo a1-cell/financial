@@ -20,16 +20,25 @@ import java.util.UUID;
 @RequestMapping("/v1")
 @RestController
 @CrossOrigin
-public class BorrowController {
+public class BorrowController extends Thread{
     @Autowired
     BorrowService borrowService;
 
+    @Override
+    public void run() {
+        for (int i=0;i<10;i++){
+            System.out.println(i);
+        }
+    }
 
     //借款
     @PostMapping("/add")
     public Result addBorrow(@RequestBody Borrow borrow){
+
+        BorrowController borrowController = new BorrowController();
+        borrowController.run();
         //设置用户id
-        borrow.setUserid(1);
+        borrow.setUserid(3);
         borrow.setBorrowRen("mlove");
         borrow.setTid(0);
         borrow.setTtid(0);
@@ -37,6 +46,11 @@ public class BorrowController {
         return new Result(true,"借款成功!","");
     }
 
+    @PostMapping("/upload2")
+    public String upload2(MultipartFile file) throws IOException {
+        String upload = OSSUploadUtil.upload(file);
+        return upload;
+    }
     //上传图片
     @PostMapping("/upload")
     public String upload(MultipartFile file) throws Exception {
