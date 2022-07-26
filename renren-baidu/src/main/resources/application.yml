@@ -1,5 +1,5 @@
 server:
-  port: 8080
+  port: 80
 spring:
   application:
     name: renren-baidu
@@ -15,3 +15,7 @@ spring:
     password: 2916435196Liu@
 mybatis:
   mapper-locations: classpath:/mapper/*Mapper.xml
+baidu:
+  apiKey: 0KarGjdTCIDKlbifVwmSLG1s
+  secretKey: IbPzGZEbXmOMbi8y6vSnKA6IWXIiDzxz
+  redirectUri: http://localhost/baidu

@@ -102,8 +102,8 @@ renren-security
 - 修改application-dev.yml文件，更新MySQL账号和密码
 - 在renren-security目录下，执行mvn clean install
 - Eclipse、IDEA运行AdminApplication.java，则可启动项目【renren-admin】
-- renren-admin访问路径：http://localhost:8083/renren-admin
-- swagger文档路径：http://localhost:8083/renren-admin/doc.html
+- renren-admin访问路径：http://localhost:8080/renren-admin
+- swagger文档路径：http://localhost:8080/renren-admin/doc.html
 - 再启动前端项目，前端地址：https://gitee.com/renrenio/renren-ui
 - 账号密码：admin/admin
 <br>
