@@ -97,6 +97,7 @@ public class ProcessInstanceController {
         System.out.println(instanceName);
         System.out.println(instanceVariable);
         String nn="呵呵呵";
+
         try {
             if (GlobalConfig.Test) {
                 securityUtil.logInAs("bajie");

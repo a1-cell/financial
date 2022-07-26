@@ -15,12 +15,12 @@
 						"method": "POST",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/login?username=bajie&password=1",
+							"raw": "http://localhost:8083/login?username=bajie&password=1",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "8080",
+							"port": "8083",
 							"path": [
 								"login"
 							],
@@ -59,12 +59,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/processDefinition/getDefinitions",
+							"raw": "http://localhost:8083/processDefinition/getDefinitions",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "8080",
+							"port": "8083",
 							"path": [
 								"processDefinition",
 								"getDefinitions"
@@ -98,7 +98,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/processDefinition/uploadStreamAndDeployment",
+							"raw": "http://localhost:8083/processDefinition/uploadStreamAndDeployment",
 							"protocol": "http",
 							"host": [
 								"localhost"

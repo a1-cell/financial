@@ -15,3 +15,18 @@ spring:
     password: 2916435196Liu@
 mybatis:
   mapper-locations: classpath:/mapper/*Mapper.xml
+#xxl-job
+xxl:
+  job:
+    ##xxl-job 调度中心地址,需要跟我们在一3.2中部署的调度中心地址一致
+    admin:
+      addresses: http://127.0.0.1:7070/xxl-job-admin
+
+    ##执行器的appname,地址端口
+    executor:
+      appname: xxl-job-liu
+      ip:
+      port: 9998
+      logpath: /data/xxl-job/jobhandler
+      logretentiondays: -1
+    accessToken:
