@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper SYSTEM "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bw.borrow.mapper.BorrowMapper">
+    <insert id="add" parameterType="io.renren.common.borrow.Borrow" useGeneratedKeys="true" keyProperty="borrowId">
+        insert into tb_borrow set borrow_name=#{borrowName},borrow_ren=#{borrowRen},borrow_money=#{borrowMoney},interest_rate=#{interestRate},periods=#{periods},back_way=#{backWay},borrow_time=now(),borrow_status=1,behoof=#{behoof},userid=#{userid},card_url1=#{cardUrl1},card_url2=#{cardUrl2},pid=#{pid},tid=#{tid},ttid=#{ttid},companyname=#{companyname},companyaddress=#{companyaddress},companyphone=#{companyphone}
+    </insert>
+</mapper>

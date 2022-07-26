@@ -8,6 +8,7 @@
 
 package io.renren.modules.sys.controller;
 
+import io.renren.modules.sys.dto.SysRoleDTO;
 import io.renren.common.annotation.LogOperation;
 import io.renren.common.constant.Constant;
 import io.renren.common.page.PageData;
@@ -17,7 +18,6 @@ import io.renren.common.validator.ValidatorUtils;
 import io.renren.common.validator.group.AddGroup;
 import io.renren.common.validator.group.DefaultGroup;
 import io.renren.common.validator.group.UpdateGroup;
-import io.renren.modules.sys.dto.SysRoleDTO;
 import io.renren.modules.sys.service.SysRoleDataScopeService;
 import io.renren.modules.sys.service.SysRoleMenuService;
 import io.renren.modules.sys.service.SysRoleService;
@@ -36,7 +36,7 @@ import java.util.Map;
 
 /**
  * 角色管理
- * 
+ *
  * @author Mark sunlightcs@gmail.com
  */
 @RestController

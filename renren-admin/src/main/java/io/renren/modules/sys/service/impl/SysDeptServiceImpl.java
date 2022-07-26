@@ -8,21 +8,20 @@
 
 package io.renren.modules.sys.service.impl;
 
+import io.renren.modules.security.user.SecurityUser;
+import io.renren.modules.security.user.UserDetail;
+import io.renren.modules.sys.dao.SysDeptDao;
+import io.renren.modules.sys.dao.SysUserDao;
+import io.renren.modules.sys.dto.SysDeptDTO;
+import io.renren.modules.sys.enums.SuperAdminEnum;
 import io.renren.common.constant.Constant;
 import io.renren.common.exception.ErrorCode;
 import io.renren.common.exception.RenException;
 import io.renren.common.service.impl.BaseServiceImpl;
 import io.renren.common.utils.ConvertUtils;
 import io.renren.common.utils.TreeUtils;
-import io.renren.modules.security.user.SecurityUser;
-import io.renren.modules.security.user.UserDetail;
-import io.renren.modules.sys.dao.SysDeptDao;
-import io.renren.modules.sys.dao.SysUserDao;
-import io.renren.modules.sys.dto.SysDeptDTO;
 import io.renren.modules.sys.entity.SysDeptEntity;
-import io.renren.modules.sys.enums.SuperAdminEnum;
 import io.renren.modules.sys.service.SysDeptService;
-import io.renren.modules.sys.service.SysUserService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

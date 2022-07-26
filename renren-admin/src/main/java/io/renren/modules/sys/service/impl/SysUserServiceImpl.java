@@ -9,17 +9,17 @@
 package io.renren.modules.sys.service.impl;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import io.renren.common.constant.Constant;
-import io.renren.common.page.PageData;
-import io.renren.common.service.impl.BaseServiceImpl;
-import io.renren.common.utils.ConvertUtils;
+import io.renren.modules.security.password.PasswordUtils;
 import io.renren.modules.security.user.SecurityUser;
 import io.renren.modules.security.user.UserDetail;
 import io.renren.modules.sys.dao.SysUserDao;
 import io.renren.modules.sys.dto.SysUserDTO;
 import io.renren.modules.sys.entity.SysUserEntity;
-import io.renren.modules.security.password.PasswordUtils;
 import io.renren.modules.sys.enums.SuperAdminEnum;
+import io.renren.common.constant.Constant;
+import io.renren.common.page.PageData;
+import io.renren.common.service.impl.BaseServiceImpl;
+import io.renren.common.utils.ConvertUtils;
 import io.renren.modules.sys.service.SysDeptService;
 import io.renren.modules.sys.service.SysRoleUserService;
 import io.renren.modules.sys.service.SysUserService;
@@ -35,7 +35,7 @@ import java.util.Map;
 
 /**
  * 系统用户
- * 
+ *
  * @author Mark sunlightcs@gmail.com
  */
 @Service

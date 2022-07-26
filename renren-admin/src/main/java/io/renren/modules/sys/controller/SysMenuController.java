@@ -8,17 +8,17 @@
 
 package io.renren.modules.sys.controller;
 
+import io.renren.modules.security.service.ShiroService;
+import io.renren.modules.security.user.SecurityUser;
+import io.renren.modules.sys.dto.SysMenuDTO;
+import io.renren.modules.sys.enums.MenuTypeEnum;
 import io.renren.common.annotation.LogOperation;
 import io.renren.common.exception.ErrorCode;
 import io.renren.common.utils.Result;
 import io.renren.common.validator.AssertUtils;
 import io.renren.common.validator.ValidatorUtils;
 import io.renren.common.validator.group.DefaultGroup;
-import io.renren.modules.security.user.SecurityUser;
 import io.renren.modules.security.user.UserDetail;
-import io.renren.modules.sys.dto.SysMenuDTO;
-import io.renren.modules.sys.enums.MenuTypeEnum;
-import io.renren.modules.security.service.ShiroService;
 import io.renren.modules.sys.service.SysMenuService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -32,7 +32,7 @@ import java.util.Set;
 
 /**
  * 菜单管理
- * 
+ *
  * @author Mark sunlightcs@gmail.com
  */
 @RestController

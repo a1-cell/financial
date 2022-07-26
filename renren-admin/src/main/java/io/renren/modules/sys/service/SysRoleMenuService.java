@@ -8,15 +8,15 @@
 
 package io.renren.modules.sys.service;
 
-import io.renren.common.service.BaseService;
 import io.renren.modules.sys.entity.SysRoleMenuEntity;
+import io.renren.common.service.BaseService;
 
 import java.util.List;
 
 
 /**
  * 角色与菜单对应关系
- * 
+ *
  * @author Mark sunlightcs@gmail.com
  */
 public interface SysRoleMenuService extends BaseService<SysRoleMenuEntity> {

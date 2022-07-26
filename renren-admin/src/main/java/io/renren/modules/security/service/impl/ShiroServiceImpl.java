@@ -8,21 +8,20 @@
 
 package io.renren.modules.security.service.impl;
 
-import io.renren.modules.security.user.UserDetail;
 import io.renren.modules.sys.dao.SysMenuDao;
 import io.renren.modules.sys.dao.SysRoleDataScopeDao;
 import io.renren.modules.sys.dao.SysUserDao;
-import io.renren.modules.security.dao.SysUserTokenDao;
 import io.renren.modules.sys.entity.SysUserEntity;
+import io.renren.modules.sys.enums.SuperAdminEnum;
+import io.renren.modules.security.user.UserDetail;
+import io.renren.modules.security.dao.SysUserTokenDao;
 import io.renren.modules.security.entity.SysUserTokenEntity;
 import io.renren.modules.security.service.ShiroService;
-import io.renren.modules.sys.enums.SuperAdminEnum;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 @Service
 public class ShiroServiceImpl implements ShiroService {

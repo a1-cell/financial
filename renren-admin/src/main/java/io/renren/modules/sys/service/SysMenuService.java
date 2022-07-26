@@ -8,17 +8,17 @@
 
 package io.renren.modules.sys.service;
 
-import io.renren.common.service.BaseService;
 import io.renren.modules.security.user.UserDetail;
 import io.renren.modules.sys.dto.SysMenuDTO;
 import io.renren.modules.sys.entity.SysMenuEntity;
+import io.renren.common.service.BaseService;
 
 import java.util.List;
 
 
 /**
  * 菜单管理
- * 
+ *
  * @author Mark sunlightcs@gmail.com
  */
 public interface SysMenuService extends BaseService<SysMenuEntity> {
