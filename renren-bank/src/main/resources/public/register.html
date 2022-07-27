@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+
+    <title>Title</title>
+        <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+        <script>
+
+    </script>
+</head>
+<body>
+<h2>银行存管系统</h2>
+<h3>开户</h3>
+<form method="post" action="http://localhost:9113/bha-neo-app/lanmaotech/createUser">
+    银行名称：<input type="text" name="bankname" value=""><br/><br/>
+    银行卡号：<input type="text" name="bankidcard" value=""><br/><br/>
+    手&nbsp;机&nbsp;号&nbsp;：<input type="text" name="bankphone" value=""><br/><br/>
+    <input type="text" name="platformNo" value="${param.platformNo}">
+    <input type="text" name="data" value="${param.data}">
+    <input type="submit" value="开户">
+</form>
+
+
+</body>
+</html>

@@ -37,7 +37,7 @@ public class BorrowController extends Thread{
 
         BorrowController borrowController = new BorrowController();
         borrowController.run();
-        //设置用户id
+        //设置用户id0
         borrow.setUserid(3);
         borrow.setBorrowRen("mlove");
         borrow.setTid(0);
