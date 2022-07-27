@@ -27,12 +27,4 @@ public class ProductController {
         List<Product> list=service.getList();
         return new Result(true,"查询成功",list);
     }
-
-
-    @GetMapping("/test")
-    public String toTest(){
-        String aaa="我是测试数据";
-        System.out.println("哈哈哈哈哈哈哈");
-        return aaa;
-    }
 }

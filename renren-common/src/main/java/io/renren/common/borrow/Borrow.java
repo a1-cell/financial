@@ -19,77 +19,14 @@ public class Borrow {
     private Integer pid;
     private Integer tid;
     private Integer ttid;
-    private String companyname;
-    private String companyaddress;
-    private String companyphone;
-    private Integer id;
-    private String housename;
-    private String houseaddress;
-    private String houseUrl;
-    private BigDecimal housemoney;
+    private String userphone;
 
-    public Integer getId() {
-        return id;
+    public String getUserphone() {
+        return userphone;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getHousename() {
-        return housename;
-    }
-
-    public void setHousename(String housename) {
-        this.housename = housename;
-    }
-
-    public String getHouseaddress() {
-        return houseaddress;
-    }
-
-    public void setHouseaddress(String houseaddress) {
-        this.houseaddress = houseaddress;
-    }
-
-    public String getHouseUrl() {
-        return houseUrl;
-    }
-
-    public void setHouseUrl(String houseUrl) {
-        this.houseUrl = houseUrl;
-    }
-
-    public BigDecimal getHousemoney() {
-        return housemoney;
-    }
-
-    public void setHousemoney(BigDecimal housemoney) {
-        this.housemoney = housemoney;
-    }
-
-    public String getCompanyname() {
-        return companyname;
-    }
-
-    public void setCompanyname(String companyname) {
-        this.companyname = companyname;
-    }
-
-    public String getCompanyaddress() {
-        return companyaddress;
-    }
-
-    public void setCompanyaddress(String companyaddress) {
-        this.companyaddress = companyaddress;
-    }
-
-    public String getCompanyphone() {
-        return companyphone;
-    }
-
-    public void setCompanyphone(String companyphone) {
-        this.companyphone = companyphone;
+    public void setUserphone(String userphone) {
+        this.userphone = userphone;
     }
 
     public Integer getBorrowId() {

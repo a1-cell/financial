@@ -60,13 +60,13 @@ function getSelectedRow() {
     	alert("请选择一条记录");
     	return ;
     }
-    
+
     var selectedIDs = grid.getGridParam("selarrrow");
     if(selectedIDs.length > 1){
     	alert("只能选择一条记录");
     	return ;
     }
-    
+
     return selectedIDs[0];
 }
 
@@ -78,6 +78,6 @@ function getSelectedRows() {
     	alert("请选择一条记录");
     	return ;
     }
-    
+
     return grid.getGridParam("selarrrow");
 }

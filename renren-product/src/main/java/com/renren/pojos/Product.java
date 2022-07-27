@@ -33,7 +33,9 @@ public class Product {
         this.id = id;
     }
 
-
+    public BigDecimal getCapitalCount() {
+        return capitalCount;
+    }
 
     public String getCapitalType() {
         return capitalType;
