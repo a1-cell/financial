@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import java.io.*;
+import java.util.List;
 import java.util.UUID;
 
 @RequestMapping("/v1")
@@ -29,6 +30,12 @@ public class BorrowController extends Thread{
         for (int i=0;i<10;i++){
             System.out.println(i);
         }
+    }
+    //借款查询所有
+    @GetMapping("/getlist")
+    public Result getlist(){
+        List<Borrow> list=borrowService.getlist();
+        return new Result(true,"查询成功!",list);
     }
 
     //借款

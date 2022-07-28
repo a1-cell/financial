@@ -3,6 +3,9 @@ package com.bw.borrow.mapper;
 import io.renren.common.borrow.Borrow;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Select;
+
+import java.util.List;
 
 @Mapper
 public interface BorrowMapper {
@@ -10,4 +13,6 @@ public interface BorrowMapper {
     void add(Borrow borrow);
     @Insert("insert into pawn set borrow_id=#{borrowId},housename=#{housename},houseaddress=#{houseaddress},houseUrl=#{houseUrl}")
     void addPawn(Borrow borrow);
+    @Select("select b.borrow_name borrowName,b.borrow_ren borrowRen,b.borrow_money borrowMoney,b.behoof,p.housename from tb_borrow b left join pawn p on b.borrow_id=p.borrow_id")
+    List<Borrow> getlist();
 }
