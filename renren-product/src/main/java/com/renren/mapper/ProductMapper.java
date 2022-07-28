@@ -1,6 +1,6 @@
 package com.renren.mapper;
 
-import com.renren.pojos.Product;
+import io.renren.common.product.Product;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;

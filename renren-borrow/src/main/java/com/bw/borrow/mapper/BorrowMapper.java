@@ -1,8 +1,14 @@
 package com.bw.borrow.mapper;
 
 import io.renren.common.borrow.Borrow;
+import io.renren.common.product.Product;
+import io.renren.common.userEnttiy.User;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
+
+import java.util.List;
 
 @Mapper
 public interface BorrowMapper {
@@ -10,4 +16,11 @@ public interface BorrowMapper {
     void add(Borrow borrow);
     @Insert("insert into pawn set borrow_id=#{borrowId},housename=#{housename},houseaddress=#{houseaddress},houseUrl=#{houseUrl}")
     void addPawn(Borrow borrow);
+
+    @Select("select id,borrow_id borrowId,product_name productName,capital_count capitalCount,status from product")
+    List<Product> getList();
+    @Select("select userid,username,userpassword,money,userphone from users where userid=#{userid}")
+    User selectUsersById(Long userid);
+    @Update("update product set capital_count=capital_count-#{capitalCount} where id=#{id}")
+    void updatePro(Product product);
 }

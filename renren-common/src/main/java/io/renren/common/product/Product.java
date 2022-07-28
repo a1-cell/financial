@@ -1,4 +1,4 @@
-package com.renren.pojos;
+package io.renren.common.product;
 
 import java.math.BigDecimal;
 
@@ -24,6 +24,26 @@ public class Product {
     private String createTime;
 
     private BigDecimal capitalCount;
+
+    private Long borrowId;
+
+    private Long userid;
+
+    public Long getUserid() {
+        return userid;
+    }
+
+    public void setUserid(Long userid) {
+        this.userid = userid;
+    }
+
+    public Long getBorrowId() {
+        return borrowId;
+    }
+
+    public void setBorrowId(Long borrowId) {
+        this.borrowId = borrowId;
+    }
 
     public Long getId() {
         return id;

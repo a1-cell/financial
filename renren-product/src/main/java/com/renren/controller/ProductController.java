@@ -1,13 +1,12 @@
 package com.renren.controller;
 
-import com.renren.pojos.Product;
+import io.renren.common.product.Product;
 import com.renren.service.ProductService;
 import io.renren.common.result.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @CrossOrigin

@@ -15,4 +15,6 @@ public interface UserMapper {
     void addUser(User user);
     @Select("select count(*) from users where username=#{username}")
     int checkUserName(String username);
+    @Select("select userid,username,userpassword,money,userphone from users where username=#{username}")
+    User findByUserName(String username);
 }

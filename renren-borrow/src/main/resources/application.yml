@@ -19,6 +19,9 @@ spring:
    # port: 5672
    # username: guest
     #password: guest
+  redis:
+    host: 127.0.0.1
+    port: 6379
 
 mybatis:
   mapper-locations: classpath:com/bw/borrow/mapper/*Mapper.xml

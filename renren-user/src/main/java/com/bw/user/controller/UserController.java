@@ -4,6 +4,7 @@ package com.bw.user.controller;
 import com.bw.user.service.UserService;
 import io.renren.common.result.Result;
 import io.renren.common.userEnttiy.User;
+import oracle.jdbc.proxy.annotation.Post;
 import org.apache.shiro.crypto.hash.SimpleHash;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -30,5 +31,9 @@ public class UserController {
         return  userService.addUser(user);
     }
 
+    @PostMapping("/login")
+    public Result login(@RequestBody User user){
+        return userService.login(user);
+    }
 
 }
