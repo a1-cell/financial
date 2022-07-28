@@ -5,15 +5,19 @@ import com.bw.borrow.utils.Filetomutportfile;
 import com.bw.borrow.utils.ImageWatermarkUtils;
 import com.bw.borrow.utils.OSSUploadUtil;
 
+import com.xxl.job.core.handler.annotation.XxlJob;
 import io.renren.common.borrow.Borrow;
+import io.renren.common.borrow.Rule;
 import io.renren.common.result.Result;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItem;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
+import javax.annotation.Resource;
 import java.io.*;
 import java.util.List;
 import java.util.UUID;
@@ -24,6 +28,8 @@ import java.util.UUID;
 public class BorrowController extends Thread{
     @Autowired
     BorrowService borrowService;
+    @Resource
+    private StringRedisTemplate stringRedisTemplate;
 
     @Override
     public void run() {
@@ -31,6 +37,37 @@ public class BorrowController extends Thread{
             System.out.println(i);
         }
     }
+
+
+    //xxl-job自动投标
+    @XxlJob("rule")
+    public void test(){
+        System.out.println("成功!111111");
+        //查询所有自动投标
+        List<Rule> list=borrowService.getRuleList();
+    }
+
+
+    //开启自动投标添加规则
+    @PostMapping("/addrule")
+    public Result addrule(@RequestBody Rule rule){
+        rule.setStatue(1);
+        borrowService.addrule(rule);
+        return new Result(true,"成功","");
+    }
+    //查看自动投标
+    @GetMapping("/getrule")
+    public Result getrule(String name){
+        Rule rule=borrowService.getrule(name);
+        return new Result(true,"查询成功",rule);
+    }
+    //关闭自动投标
+    @GetMapping("/norul")
+    public Result norul(String name){
+        borrowService.norul(name);
+        return new Result(true,"关闭成功","");
+    }
+
     //借款查询所有
     @GetMapping("/getlist")
     public Result getlist(){

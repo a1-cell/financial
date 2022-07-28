@@ -1,9 +1,11 @@
 package com.bw.borrow.mapper;
 
 import io.renren.common.borrow.Borrow;
+import io.renren.common.borrow.Rule;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import java.util.List;
 
@@ -15,4 +17,11 @@ public interface BorrowMapper {
     void addPawn(Borrow borrow);
     @Select("select b.borrow_name borrowName,b.borrow_ren borrowRen,b.borrow_money borrowMoney,b.behoof,p.housename from tb_borrow b left join pawn p on b.borrow_id=p.borrow_id")
     List<Borrow> getlist();
+    void addrule(Rule rule);
+    @Select("select * from rule where name=#{name}")
+    Rule getrule(String name);
+    @Update("update rule set statue=0 where name=#{name}")
+    void norul(String name);
+    @Select("select * from rule where statue=1")
+    List<Rule> getRuleList();
 }

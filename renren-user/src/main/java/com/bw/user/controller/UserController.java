@@ -55,6 +55,11 @@ public class UserController {
         System.out.println("0");
         return  userService.addUser(user);
     }
+    @GetMapping("/getuser")
+    public Result getuserbyid(){
+        List<User> list=userService.getuserbyid();
+        return new Result(true,"查询成功",list);
+    }
 
 
 
