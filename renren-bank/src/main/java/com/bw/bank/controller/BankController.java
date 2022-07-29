@@ -48,9 +48,9 @@ public class BankController {
     BankService bankService;
 
     //爬虫测试
-    @RequestMapping("/spider")
+    @RequestMapping("/spider/{name}")
     @ResponseBody
-    public Result spider(String name) throws Exception {
+    public Result spider(@PathVariable String name) throws Exception {
         //根据小区名称获取小区id
         Document document1 = Jsoup.connect("https://bj.lianjia.com/ershoufang/rs"+name+"/").get();
         Elements select = document1.select("[class=clear LOGVIEWDATA LOGCLICKDATA]");

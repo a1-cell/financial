@@ -6,6 +6,8 @@ import io.renren.common.userEnttiy.User;
 import org.apache.shiro.crypto.hash.SimpleHash;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 
@@ -13,6 +15,9 @@ import java.util.List;
 public class UserService {
     @Autowired
     private UserMapper userMapper;
+
+
+
 
     public List<User> userList() {
         return userMapper.userList();
@@ -46,5 +51,13 @@ public class UserService {
         }else{
             return new Result(false,"密码错误","");
         }
+    }
+
+    public User getuser(User user) {
+        return userMapper.getuser(user);
+    }
+
+    public List<User> getuserbyid() {
+        return userMapper.getuserbyid();
     }
 }

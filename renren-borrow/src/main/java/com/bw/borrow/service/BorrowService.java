@@ -10,6 +10,7 @@ import io.renren.common.result.Result;
 import io.renren.common.userEnttiy.User;
 import org.redisson.api.RLock;
 import org.redisson.api.RedissonClient;
+import io.renren.common.borrow.Rule;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.HashOperations;
 import org.springframework.data.redis.core.StringRedisTemplate;
@@ -22,6 +23,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
+
+import java.util.List;
 
 @Service
 public class BorrowService {
@@ -38,6 +41,26 @@ public class BorrowService {
         if(borrow.getHousename()!=null){
             borrowMapper.addPawn(borrow);
         }
+    }
+
+    public List<Borrow> getlist() {
+        return borrowMapper.getlist();
+    }
+
+    public void addrule(Rule rule) {
+        borrowMapper.addrule(rule);
+    }
+
+    public Rule getrule(String name) {
+        return borrowMapper.getrule(name);
+    }
+
+    public void norul(String name) {
+        borrowMapper.norul(name);
+    }
+
+    public List<Rule> getRuleList() {
+        return borrowMapper.getRuleList();
     }
 
     public List<Product> getList() throws JsonProcessingException {
