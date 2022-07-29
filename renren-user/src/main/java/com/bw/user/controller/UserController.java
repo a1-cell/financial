@@ -25,6 +25,7 @@ public class UserController {
         List<User> list=userService.userList();
         return new Result(true,"查询成功",list);
     }
+
     @PostMapping("/adduser")
     public Result addUser(@RequestBody User user) throws NoSuchAlgorithmException {
         System.out.println("0");
