@@ -25,7 +25,7 @@ xxl:
     executor:
       appname: mincl
       ip:
-      port: 9992
+      port: 9998
       logpath: /data/xxl-job/jobhandler
       logretentiondays: -1
     accessToken:

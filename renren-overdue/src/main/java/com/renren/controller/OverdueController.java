@@ -60,7 +60,7 @@ public class OverdueController {
         return new Result(true,"短信催收成功","");
     }
 
-    @XxlJob("mincl")
+    @XxlJob("job-min")
     public void sendAll() throws IOException {
         System.out.println("=======1");
 //        List<Overdue> list=overService.getList();

@@ -139,4 +139,25 @@ public class BankController {
 
     }
 
+
+//    @RequestMapping("/sign")
+//    public String setSign(RequestEntity requestEntity, HttpServletRequest request, HttpServletResponse response) throws JsonProcessingException {
+//        if (requestEntity.getServiceName().isEmpty() ||
+//                requestEntity.getPlatformNo() == null ||
+//                requestEntity.getKeySerial() == null ||
+//                requestEntity.getReqData().isEmpty() ||
+//                requestEntity.getSign().isEmpty()) {
+//            request.setAttribute("msg", "参数不合法");
+//            return "redirect:/error.html";
+//        }
+//        String reqData = requestEntity.getReqData();
+//        ObjectMapper mapper = new ObjectMapper();
+//        Map map = mapper.readValue(reqData, Map.class);
+//        if(requestEntity.getServiceName().equals("ESTABLISH_PROJECT")){
+//            Map result = bankService.register(requestEntity);
+//
+//
+//        }
+//        return "ok";
+//    }
 }
