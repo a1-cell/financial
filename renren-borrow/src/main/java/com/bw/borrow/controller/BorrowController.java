@@ -32,8 +32,6 @@ import java.util.UUID;
 public class BorrowController extends Thread{
     @Autowired
     BorrowService borrowService;
-    @Resource
-    private StringRedisTemplate stringRedisTemplate;
 
     @Override
     public void run() {
@@ -51,14 +49,23 @@ public class BorrowController extends Thread{
         //System.out.println("成功!111111");
         //查询所有自动投标
         List<Rule> list=borrowService.getRuleList();
+        //feign调用查询标
+        //Result productList = productClient.getProductList();
+        List<Product> list1=borrowService.getProductList();
         for (Rule rule : list) {
             BigDecimal ratemin = rule.getRatemin();
             BigDecimal ratemax = rule.getRatemax();
             BigDecimal a = ratemin.divide(new BigDecimal(100), 2, BigDecimal.ROUND_HALF_UP);
             BigDecimal b = ratemax.divide(new BigDecimal(100), 2, BigDecimal.ROUND_HALF_UP);
-            System.out.println(ratemin+"-------->>>"+a);
-            System.out.println(ratemax+"-------->>>"+b);
-
+            int count=0;
+            for (Product product : list1) {
+                if(a.compareTo(product.getProductRate())<0 && b.compareTo(product.getProductRate())>0){
+                   // System.out.println("自动投标成功!");
+                    System.out.println(a+"---"+product.getProductRate()+"------"+b);
+                    count++;
+                }
+            }
+            System.out.println(rule.getName()+"投标完成，投标次数:"+count);
         }
     }
 

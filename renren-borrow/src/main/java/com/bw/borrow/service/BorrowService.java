@@ -116,6 +116,10 @@ public class BorrowService {
         return new Result(true,"投标成功","");
     }
 
+    public List<Product> getProductList() {
+        return borrowMapper.getProductList();
+    }
+
 //    public Result tou(Borrow borrow) {
 //        //通过编号查询出投标人的金额
 //        Integer userid = borrow.getUserid();

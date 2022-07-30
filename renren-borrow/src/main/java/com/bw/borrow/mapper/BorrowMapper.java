@@ -33,4 +33,6 @@ public interface BorrowMapper {
     void norul(String name);
     @Select("select * from rule where statue=1")
     List<Rule> getRuleList();
+    @Select("select * from product")
+    List<Product> getProductList();
 }
