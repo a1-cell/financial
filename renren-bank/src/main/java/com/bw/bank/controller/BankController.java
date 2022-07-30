@@ -13,6 +13,7 @@ import io.renren.common.result.Result;
 import org.apache.http.HttpEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.utils.URIBuilder;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
@@ -62,6 +63,9 @@ public class BankController {
         //根据id爬取社区详情 扣出价格
         String url="https://bj.lianjia.com/xiaoqu/"+id;
         CloseableHttpClient httpClient = HttpClients.createDefault();
+        //创建URIBuilder
+//        URIBuilder uriBuilder=new URIBuilder();
+//        uriBuilder.setParameter();
         HttpGet httpGet = new HttpGet(url);
         CloseableHttpResponse response = httpClient.execute(httpGet);
         HttpEntity entity = response.getEntity();

@@ -19,6 +19,7 @@ import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import javax.annotation.Resource;
 import java.io.*;
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.UUID;
 
@@ -39,13 +40,25 @@ public class BorrowController extends Thread{
     }
 
 
+
     //xxl-job自动投标
     @XxlJob("rule")
+    @GetMapping("/ab")
     public void test(){
-        System.out.println("成功!111111");
+        //System.out.println("成功!111111");
         //查询所有自动投标
         List<Rule> list=borrowService.getRuleList();
+        for (Rule rule : list) {
+            BigDecimal ratemin = rule.getRatemin();
+            BigDecimal ratemax = rule.getRatemax();
+            BigDecimal a = ratemin.divide(new BigDecimal(100), 2, BigDecimal.ROUND_HALF_UP);
+            BigDecimal b = ratemax.divide(new BigDecimal(100), 2, BigDecimal.ROUND_HALF_UP);
+            System.out.println(ratemin+"-------->>>"+a);
+            System.out.println(ratemax+"-------->>>"+b);
+
+        }
     }
+
 
 
     //开启自动投标添加规则
