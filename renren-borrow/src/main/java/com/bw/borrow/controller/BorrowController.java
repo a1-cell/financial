@@ -5,10 +5,13 @@ import com.bw.borrow.utils.Filetomutportfile;
 import com.bw.borrow.utils.ImageWatermarkUtils;
 import com.bw.borrow.utils.OSSUploadUtil;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.xxl.job.core.handler.annotation.XxlJob;
 import io.renren.common.borrow.Borrow;
+import io.renren.common.product.Product;
 import io.renren.common.borrow.Rule;
 import io.renren.common.result.Result;
+import oracle.jdbc.proxy.annotation.Post;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItem;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -169,6 +172,22 @@ public class BorrowController extends Thread{
         String upload = OSSUploadUtil.upload(file);
 
         return upload;
+    }
+
+    /**
+     * 查询所有审核通过的借款申请
+     * @return
+     */
+    @GetMapping("/list")
+    public Result getBorrowList() throws JsonProcessingException {
+        List<Product> list=borrowService.getList();
+        return new Result(true,"查询成功",list);
+    }
+
+    @PostMapping("/tou")
+    public Result tou(@RequestBody Product product) throws InterruptedException {
+
+        return borrowService.tou(product);
     }
     //File转MultipartFile
    /* private MultipartFile getFile(File file) throws Exception {

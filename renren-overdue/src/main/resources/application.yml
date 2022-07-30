@@ -1,41 +1,32 @@
 server:
-  port: 9112
-
+  port: 9205
 spring:
   application:
-    name: renren-borrow
+    name: renren-overdue
   cloud:
     nacos:
       discovery:
         server-addr: 120.48.72.211:8848
         namespace: be188a42-2c90-487c-aece-802135d27942
   datasource:
-    url: jdbc:mysql://120.48.66.56:3306/bank?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8
-    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://120.48.66.56:3306/bank?serverTimezone=GMT%2B8&characterEncoding=utf-8&useSSL=false
+    driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
     password: 2916435196Liu@
- # rabbitmq:
-  #  host: 192.168.57.129
-   # port: 5672
-   # username: guest
-    #password: guest
-  redis:
-    host: 127.0.0.1
-    port: 6379
-
 mybatis:
-  mapper-locations: classpath:com/bw/borrow/mapper/*Mapper.xml
+  mapper-locations: classpath:/mapper/*Mapper.xml
 xxl:
   job:
     #xxl-job 调度中心地址,需要跟我们在一3.2中部署的调度中心地址一致
     admin:
-      addresses: http://127.0.0.1:8090/xxl-job-admin
+      addresses: http://localhost:9999/xxl-job-admin
 
     #执行器的appname,地址端口
     executor:
-      appname: rule
+      appname: mincl
       ip:
-      port: 9999
+      port: 9998
       logpath: /data/xxl-job/jobhandler
       logretentiondays: -1
     accessToken:
+

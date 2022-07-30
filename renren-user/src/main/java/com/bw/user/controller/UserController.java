@@ -4,6 +4,7 @@ package com.bw.user.controller;
 import com.bw.user.service.UserService;
 import io.renren.common.result.Result;
 import io.renren.common.userEnttiy.User;
+import oracle.jdbc.proxy.annotation.Post;
 import io.renren.common.utils.JwtUtil;
 import org.apache.shiro.crypto.hash.SimpleHash;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,6 +51,7 @@ public class UserController {
         List<User> list=userService.userList();
         return new Result(true,"查询成功",list);
     }
+
     @PostMapping("/adduser")
     public Result addUser(@RequestBody User user) throws NoSuchAlgorithmException {
         System.out.println("0");
@@ -62,5 +64,9 @@ public class UserController {
     }
 
 
+//    @PostMapping("/login")
+//    public Result login(@RequestBody User user){
+//        return userService.login(user);
+//    }
 
 }
