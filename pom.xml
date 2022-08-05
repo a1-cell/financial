@@ -28,6 +28,9 @@
         <module>renren-borrow</module>
         <module>renren-baidu</module>
         <module>renren-bank</module>
+        <module>renren-notemq</module>
+        <module>renren-customer</module>
+        <module>renren-pay</module>
     </modules>
 
     <properties>

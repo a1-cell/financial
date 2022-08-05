@@ -1,8 +1,9 @@
 package io.renren.common.borrow;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
-public class Borrow {
+public class Borrow implements Serializable {
     private Integer borrowId;
     private String borrowName;
     private String borrowRen;
@@ -20,6 +21,114 @@ public class Borrow {
     private Integer tid;
     private Integer ttid;
     private String userphone;
+    private Integer creStatus;
+    private Integer uid;
+    private String uname;
+    private String cstatus;
+    private String companyname;
+    private String companyaddress;
+    private String companyphone;
+    private Integer id;
+    private String housename;
+    private String houseaddress;
+    private String houseUrl;
+    private BigDecimal housemoney;
+
+    public String getCompanyname() {
+        return companyname;
+    }
+
+    public void setCompanyname(String companyname) {
+        this.companyname = companyname;
+    }
+
+    public String getCompanyaddress() {
+        return companyaddress;
+    }
+
+    public void setCompanyaddress(String companyaddress) {
+        this.companyaddress = companyaddress;
+    }
+
+    public String getCompanyphone() {
+        return companyphone;
+    }
+
+    public void setCompanyphone(String companyphone) {
+        this.companyphone = companyphone;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getHousename() {
+        return housename;
+    }
+
+    public void setHousename(String housename) {
+        this.housename = housename;
+    }
+
+    public String getHouseaddress() {
+        return houseaddress;
+    }
+
+    public void setHouseaddress(String houseaddress) {
+        this.houseaddress = houseaddress;
+    }
+
+    public String getHouseUrl() {
+        return houseUrl;
+    }
+
+    public void setHouseUrl(String houseUrl) {
+        this.houseUrl = houseUrl;
+    }
+
+    public BigDecimal getHousemoney() {
+        return housemoney;
+    }
+
+    public void setHousemoney(BigDecimal housemoney) {
+        this.housemoney = housemoney;
+    }
+
+    public String getCstatus() {
+        return cstatus;
+    }
+
+    public void setCstatus(String cstatus) {
+        this.cstatus = cstatus;
+    }
+
+    public Integer getUid() {
+        return uid;
+    }
+
+    public void setUid(Integer uid) {
+        this.uid = uid;
+    }
+
+    public String getUname() {
+        return uname;
+    }
+
+    public void setUname(String uname) {
+        this.uname = uname;
+    }
+
+    public Integer getCreStatus() {
+        return creStatus;
+    }
+
+    public void setCreStatus(Integer creStatus) {
+        this.creStatus = creStatus;
+    }
 
     public String getUserphone() {
         return userphone;

@@ -6,9 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 public class BorrowService {
-    @Autowired
+    @Autowired(required = false)
     BorrowMapper borrowMapper;
     @Transactional
     public void add(Borrow borrow) {
@@ -17,4 +19,5 @@ public class BorrowService {
             borrowMapper.addPawn(borrow);
         }
     }
+
 }
