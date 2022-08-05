@@ -57,6 +57,12 @@ public class BorrowController extends Thread{
 
 
 
+    //黑名单查询剩余次数
+    @GetMapping("/getnum/{id}")
+    public Integer getUnm(@PathVariable Integer id){
+        Integer num=borrowService.getNum(id);
+        return num;
+    }
     //定时任务查询黑名单库添加到es
     @PostMapping("/sync")
     public Result blacklist(){
@@ -82,6 +88,13 @@ public class BorrowController extends Thread{
     //查询ES
     @PostMapping("/getEs")
     public Result getEs(@RequestBody BackList blackList) throws Exception {
+        //判断查询剩余次数
+        Integer num = borrowService.getNum(blackList.getId());
+        if(num<=0){
+            return new Result(false,"您的查询次数已用完，请及时充值!","");
+        }
+        //修改查询次数
+        borrowService.updateNum(blackList.getId());
         //创建查询请求
         SearchRequest searchRequest = new SearchRequest("bank");
         searchRequest.types("blacklist");

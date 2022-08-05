@@ -125,6 +125,14 @@ public class BorrowService {
         return borrowMapper.blacklist();
     }
 
+    public Integer getNum(Integer id) {
+        return borrowMapper.getNum(id);
+    }
+
+    public void updateNum(Integer id) {
+        borrowMapper.updateNum(id);
+    }
+
 //    public Result tou(Borrow borrow) {
 //        //通过编号查询出投标人的金额
 //        Integer userid = borrow.getUserid();

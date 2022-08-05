@@ -38,4 +38,8 @@ public interface BorrowMapper {
     List<Product> getProductList();
     @Select("select * from blacklist")
     List<BackList> blacklist();
+   @Select("select num from companytable where id=#{id}")
+    Integer getNum(Integer id);
+     @Update("update companytable set num=num-1 where id=#{id}")
+    void updateNum(Integer id);
 }
