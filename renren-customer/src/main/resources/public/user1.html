@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>用户测试界面</title>
+    <!-- 引入样式 -->
+
+    <script src="vue.js"></script>
+    <script src="axios.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <!-- 引入组件库 -->
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+
+    <style>
+        .chat-section {
+            width: 81%;
+            height: 100%;
+            margin: 0 auto;
+        }
+
+        /* 左边的列表 */
+        .leftDiv {
+            width: 20%;
+            height: 100.2%;
+            float: left;
+            background-color: #2e2e2e;
+        }
+
+        .friends-list {
+            overflow-y: auto;
+            overflow-x: hidden;
+            height: 87%;
+        }
+
+        .friends-list::-webkit-scrollbar {
+            display: none;
+        }
+
+        .infinite-list {
+            padding: 0;
+            margin: 0;
+            color: white;
+            list-style-type: none;
+        }
+
+        .infinite-list-head {
+            color: white;
+            height: 50px;
+            margin-top: 1px;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #2e2e2e;
+        }
+
+        .head-img-size {
+            width: 30px;
+            height: 30px;
+            margin-right: 5px;
+        }
+
+        /*头像切园*/
+        .cut-circle {
+            border-radius: 50%;
+            overflow: hidden;
+        }
+
+        .infinite-list-item {
+            cursor: pointer; /*鼠标放上变手*/
+            height: 50px;
+            margin-top: 1px;
+            padding: 10px;
+            display: flex;
+            /*justify-content: center; !*水平居中*!*/
+            align-items: center; /*垂直居中*/
+            background-color: #535353;
+        }
+
+        /* 右边内容 */
+        .chat-div {
+            width: 79.7%;
+            height: 100%;
+            float: left;
+            border: solid 1px #a3a3a3;
+        }
+
+        .chat-title {
+            height: 45px;
+            padding-left: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .chat-title span {
+            font-size: 20px;
+        }
+
+        /* 右边中间消息展示 */
+        .news {
+            width: 99.7%;
+            height: 63%;
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+
+        /*隐藏中间的进度条*/
+        .news::-webkit-scrollbar {
+            display: none;
+        }
+
+        .expression {
+            width: 100%;
+            height: 30px;
+            padding-left: 15px;
+        }
+
+        .expression-emjio {
+            width: 35px;
+            height: 35px;
+            display: inline-block;
+        }
+
+        .expression i {
+            font-size: 20px;
+            color: #7d7d7d;
+            margin: 0 8px 0 0;
+        }
+
+        .send-message {
+
+        }
+
+        .send-textarea {
+            margin-left: 5px;
+            width: 98%;
+        }
+
+        .send-textarea >>> .el-textarea__inner {
+            border: 0;
+            resize: none;
+        }
+
+        .send-message span {
+            font-size: 13px;
+            margin: 8px 9px 1px 0;
+            float: right;
+            display: block;
+            color: #aaa9a9;
+        }
+
+        .send-but {
+            margin: 0;
+            padding: 0;
+            height: 25px;
+            width: 50px;
+        }
+
+        /*接收的消息*/
+        .chat-receiver {
+            clear: both;
+            font-size: 80%;
+        }
+
+        /*聊天气泡效果*/
+        .chat-receiver div:nth-of-type(1) {
+            float: left;
+        }
+
+        .chat-receiver div:nth-of-type(2) {
+            margin: 0 50px 2px 50px;
+            padding: 0px;
+            color: #848484;
+            font-size: 70%;
+            text-align: left;
+        }
+
+        .chat-receiver div:nth-of-type(3) {
+            background-color: #27aa95;
+            margin: 0px 51% 10px 55px;
+            padding: 10px 10px 10px 10px;
+            border-radius: 7px;
+            text-indent: -12px;
+            width: 41%;
+        }
+        /*发送消息*/
+        .chat-sender {
+            clear: both;
+            font-size: 80%;
+        }
+
+        .chat-sender div:nth-of-type(1) {
+            float: right;
+        }
+
+        .chat-sender div:nth-of-type(2) {
+            margin: 0px 50px 2px 50px;
+            padding: 0px;
+            color: #848484;
+            font-size: 70%;
+            text-align: right;
+        }
+
+        .chat-sender div:nth-of-type(3) {
+            background-color: #b2e281;
+            margin: 0px 50px 10px 50%;
+            padding: 10px 10px 10px 10px;
+            border-radius: 7px;
+            width: 41%;
+        }
+
+        .chat-receiver div:first-child img,
+        .chat-sender div:first-child img {
+            width: 40px;
+            height: 40px;
+            /*border-radius: 10%;*/
+        }
+
+        .chat-left_triangle {
+            height: 0px;
+            width: 0px;
+            border-width: 6px;
+            border-style: solid;
+            border-color: transparent #27aa95 transparent transparent;
+            position: relative;
+            left: -22px;
+            top: 3px;
+        }
+
+        .chat-right_triangle {
+            height: 0px;
+            width: 0px;
+            border-width: 6px;
+            border-style: solid;
+            border-color: transparent transparent transparent #b2e281;
+            position: relative;
+            right: -22px;
+            top: 3px;
+        }
+
+        .chat-notice {
+            clear: both;
+            font-size: 70%;
+            color: white;
+            text-align: center;
+            margin-top: 15px;
+            margin-bottom: 15px;
+        }
+
+        .chat-notice span {
+            background-color: #cecece;
+            line-height: 25px;
+            border-radius: 5px;
+            padding: 5px 10px;
+        }
+
+        .emjio-img {
+            width: 30px;
+            height: 30px;
+            margin-bottom: -8px;
+        }
+    </style>
+
+</head>
+<body>
+    <div id="app">
+        {{ userInfo.name }}
+        <hr>
+        <div>
+            <div style="width: 300px; height: 500px; background-color: lightpink;float: left">
+                <ul class="infinite-list">
+                    <li v-for="item in friends" :key="item.id" @click="chat(item)" class="infinite-list-item">
+                        {{ item.name }}
+                    </li>
+                </ul>
+            </div>
+            <div style="width: 700px; height: 500px; background-color: lightskyblue;float: left">
+                <div class="chat-title"><span>{{ current.name }}</span>		  </div>
+                <hr/>
+                <div class="news">
+                    <template v-for="(item,index) in currentMessage">
+                        <!--时间/通知等-->
+                        <div v-if="item.msgType === '10'" class="chat-notice">
+                            <span>{{ timeFormat(item.sendTime) }}</span>
+                        </div>
+
+                        <!-- 发送的消息 -->
+                        <div v-if="item.sendUser === userInfo.id" class="chat-sender">
+                            <div>{{ userInfo.name }}</div>
+                            <div>
+                                <div class="chat-right_triangle"></div>
+                                <span style="font-size: 20px"> {{ item.msg }} </span>
+                            </div>
+                        </div>
+
+                        <!-- 接收的消息 -->
+                        <div v-if="item.acceptUser === userInfo.id && item.sendUser === current.id" class="chat-receiver">
+                            <div>{{ current.name }}</div>
+                            <div>
+                                <div class="chat-left_triangle"></div>
+                                <span style="font-size: 20px"> {{ item.msg }} </span>
+                            </div>
+                        </div>
+                    </template>
+                </div>
+            </div>
+        </div>
+        <div style="width: 1000px; background-color: springgreen;float: left">
+            <el-input
+                    type="textarea"
+                    :rows="2"
+                    placeholder="请输入内容"
+                    class="send-textarea"
+                    v-model="content">
+            </el-input>
+            <el-button type="primary" class="send-but" @click="sendBut">发 送</el-button>
+        </div>
+        {{totalMessage}}
+    </div>
+    <script>
+        new Vue({
+            el:"#app",
+            data() {
+                return {
+                    friends: [{'id':"0",'name':'客服','imgPath':'1.png'}],
+                    userInfo: '',   // 当前用户信息
+                    current: '',    // 当前聊天对象
+                    content: '',    // 内容
+                    totalMessage: {}, // 所有用户聊天记录
+                    currentMessage: [],  // 当前聊天对象消息数组
+                    websocket: '',
+                }
+            },
+            created() {
+                var currentUser = {'id':"1",'name':'用户1','imgPath':'1.png'}
+                localStorage.setItem("userInfo",JSON.stringify(currentUser))
+                this.getFriends();
+                this.initWebSocket();
+
+
+            },
+            destroyed() {
+                this.websocket.close();
+            },
+            methods: {
+                // 切换对象
+                chat(va) {
+                    console.log(va)
+                    this.currentMessage = this.totalMessage[va.id];
+                    this.content = '';
+                    this.current = va;
+                },
+
+                // 连接websocket
+                initWebSocket() {
+                    const wsuri = 'ws://localhost:9993/stu/chat/' + this.userInfo.id;
+                    this.websocket = new WebSocket(wsuri);
+                    this.websocket.onmessage = this.websocketonmessage;
+                },
+
+                // 接收数据
+                websocketonmessage(e) {
+
+                    let msg = JSON.parse(e.data);
+                    console.log(msg)
+
+                    this.timeAdd(msg.sendUser);
+
+                    var array = this.totalMessage[msg.sendUser]
+                    console.log(array)
+                    if(array==null){
+                        array = new Array();
+                    }
+                    array.push(msg);
+                    this.totalMessage[msg.sendUser] = array;
+
+                    this.totalMessage.push(msg);
+                    this.currentMessage = this.totalMessage[msg.sendUser]
+                },
+
+                // 数据发送
+                websocketsend(agentData) {
+                    this.websocket.send(agentData);
+                },
+
+                // 获取好友列表
+                async getFriends() {
+                    this.userInfo = JSON.parse(localStorage.getItem("userInfo"));
+                    // await this.api.getApi("/chat/friends/get?id=" + this.userInfo.id).then(res => {
+                    //     this.friends = res.data;
+                    //     if (this.friends.length > 0) {
+                    //         this.current = this.friends[0];
+                    //     }
+                    // })
+                },
+                // 发送按钮
+                sendBut() {
+
+                    if (this.content !== '') {
+                        // 第一条消息之前加上时间
+                        this.timeAdd(this.current.id);
+
+                        let msg = {
+                            sendUser: this.userInfo.id,
+                            acceptUser: this.current.id,
+                            msg: this.content,
+                            msgType: '',
+                            sendType: '',
+                            isRead: '1',
+                            sendTime: new Date()
+                        }
+
+
+
+                        // 判断消息类型，发送类型
+                        msg.msgType = '1';
+                        msg.sendType = '3';
+
+                        var array = this.totalMessage[this.current.id]
+                        if(array==null){
+                            array = new Array();
+                        }
+                        array.push(msg);
+                        this.totalMessage[this.current.id] = array;
+                        this.currentMessage = this.totalMessage[this.current.id]
+                        let s = JSON.stringify(msg);
+                        this.websocketsend(s);
+                        this.content = '';
+                    }
+                },
+                // 时间添加
+                timeAdd(id) {
+                    let msg = {
+                        sendUser: '',
+                        acceptUser: '',
+                        msg: '',
+                        msgType: '10',
+                        sendType: '',
+                        isRead: '',
+                        sendTime: new Date()
+                    }
+
+                    var array = this.totalMessage[id]
+                    if(array==null){
+                        array = new Array();
+                    }
+                    array.push(msg);
+                    this.totalMessage[id] = array;
+                    this.currentMessage = this.totalMessage[id]
+
+                },
+                // 时间判断,上一条消息和当前消息差距超过1小时时候显示一条
+                timeJudgment() {
+
+                },
+                // 时间格式化
+                timeFormat(te) {
+                    let timedate, s, mm, h, d, m, y, time;
+                    if (te == '') {
+                        return '';
+                    } else if (te.length == 10) {
+                        time = new Date(te * 1000);
+                        y = time.getFullYear();
+                        m = time.getMonth() < 9 ? '0' + (time.getMonth() + 1) : time.getMonth() + 1;
+                        d = time.getDate() < 10 ? '0' + time.getDate() : time.getDate();
+                        h = time.getHours() < 10 ? '0' + time.getHours() : time.getHours();
+                        mm = time.getMinutes() < 10 ? '0' + time.getMinutes() : time.getMinutes();
+                        s = time.getSeconds() < 10 ? '0' + time.getSeconds() : time.getSeconds();
+                        timedate = y + '年' + m + '月' + d + '日 ' + h + ':' + mm + ':' + s;
+                        return timedate;
+                    } else {
+                        time = new Date(te);
+                        y = time.getFullYear();
+                        m = time.getMonth() < 9 ? '0' + (time.getMonth() + 1) : time.getMonth() + 1;
+                        d = time.getDate() < 10 ? '0' + time.getDate() : time.getDate();
+                        h = time.getHours() < 10 ? '0' + time.getHours() : time.getHours();
+                        mm = time.getMinutes() < 10 ? '0' + time.getMinutes() : time.getMinutes();
+                        s = time.getSeconds() < 10 ? '0' + time.getSeconds() : time.getSeconds();
+                        timedate = y + '年' + m + '月' + d + '日 ' + h + ':' + mm + ':' + s;
+                        return timedate;
+                    }
+                },
+                // 查询当前消息
+                findMessage() {
+
+                }
+            }
+        })
+    </script>
+</body>
+</html>

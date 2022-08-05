@@ -6,7 +6,7 @@
  * 版权所有，侵权必究！
  */
 
-package io.renren.config;
+package io.renren.note.config;
 
 import io.renren.dao.*;
 import io.renren.utils.RenException;
