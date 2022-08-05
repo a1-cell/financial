@@ -66,6 +66,14 @@ public class BankController {
         //创建URIBuilder
 //        URIBuilder uriBuilder=new URIBuilder();
 //        uriBuilder.setParameter();
+        /*
+        *
+        *
+        *
+        *
+        *
+        *
+        * */
         HttpGet httpGet = new HttpGet(url);
         CloseableHttpResponse response = httpClient.execute(httpGet);
         HttpEntity entity = response.getEntity();

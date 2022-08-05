@@ -27,7 +27,7 @@ public class ImageWatermarkUtils {
     // 水印纵向位置
     private static int positionHeight = 100;
     // 水印文字字体
-    private static Font font = new Font("宋体", Font.BOLD, 50);
+    private static Font font = new Font("宋体", Font.BOLD, 30);
     // 水印文字颜色
     private static Color color = Color.red;
 

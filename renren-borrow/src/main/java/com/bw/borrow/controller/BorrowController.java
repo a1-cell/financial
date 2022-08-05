@@ -1,5 +1,6 @@
 package com.bw.borrow.controller;
 
+import com.bw.borrow.config.ElasticsearchConfig;
 import com.bw.borrow.service.BorrowService;
 import com.bw.borrow.utils.Filetomutportfile;
 import com.bw.borrow.utils.ImageWatermarkUtils;
@@ -8,12 +9,25 @@ import com.bw.borrow.utils.OSSUploadUtil;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.xxl.job.core.handler.annotation.XxlJob;
 import io.renren.common.borrow.Borrow;
+import io.renren.common.es.BackList;
 import io.renren.common.product.Product;
 import io.renren.common.borrow.Rule;
 import io.renren.common.result.Result;
 import oracle.jdbc.proxy.annotation.Post;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItem;
+import org.apache.lucene.search.TotalHits;
+import org.elasticsearch.action.index.IndexRequest;
+import org.elasticsearch.action.search.SearchRequest;
+import org.elasticsearch.action.search.SearchResponse;
+import org.elasticsearch.client.RequestOptions;
+import org.elasticsearch.client.RestHighLevelClient;
+import org.elasticsearch.index.query.BoolQueryBuilder;
+import org.elasticsearch.index.query.MultiMatchQueryBuilder;
+import org.elasticsearch.index.query.QueryBuilders;
+import org.elasticsearch.search.SearchHit;
+import org.elasticsearch.search.SearchHits;
+import org.elasticsearch.search.builder.SearchSourceBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.web.bind.annotation.*;
@@ -23,8 +37,7 @@ import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import javax.annotation.Resource;
 import java.io.*;
 import java.math.BigDecimal;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 @RequestMapping("/v1")
 @RestController
@@ -32,6 +45,8 @@ import java.util.UUID;
 public class BorrowController extends Thread{
     @Autowired
     BorrowService borrowService;
+    @Autowired
+    RestHighLevelClient restHighLevelClient;
 
     @Override
     public void run() {
@@ -42,6 +57,57 @@ public class BorrowController extends Thread{
 
 
 
+    //定时任务查询黑名单库添加到es
+    @PostMapping("/sync")
+    public Result blacklist(){
+        List<BackList> list=borrowService.blacklist();
+        for (BackList backList : list) {
+            IndexRequest indexRequest = new IndexRequest("bank", "blacklist");
+            indexRequest.id(String.valueOf(backList.getId()));
+            Map map=new HashMap();
+            map.put("userid",backList.getUserid());
+            map.put("money",backList.getMoney());
+            map.put("username",backList.getUsername());
+            map.put("seenum",backList.getSeenum());
+            map.put("overduenum",backList.getOverduenum());
+            indexRequest.source(map);
+            try {
+                restHighLevelClient.index(indexRequest, RequestOptions.DEFAULT);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return new Result(true,"添加ES成功!","");
+    }
+    //查询ES
+    @PostMapping("/getEs")
+    public Result getEs(@RequestBody BackList blackList) throws Exception {
+        //创建查询请求
+        SearchRequest searchRequest = new SearchRequest("bank");
+        searchRequest.types("blacklist");
+        SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
+        //添加搜索条件
+        MultiMatchQueryBuilder multiMatchQueryBuilder = QueryBuilders.multiMatchQuery(blackList.getUsername(), "username");
+
+        searchSourceBuilder.query(multiMatchQueryBuilder);
+        //加入查询请求
+        searchRequest.source(searchSourceBuilder);
+        //执行搜索
+        SearchResponse search = restHighLevelClient.search(searchRequest, RequestOptions.DEFAULT);
+        SearchHits hits = search.getHits();
+        TotalHits totalHits = hits.getTotalHits();
+        long value = totalHits.value;
+        System.out.println(value);
+        SearchHit[] data = hits.getHits();
+        List list=new ArrayList();
+        for (SearchHit obj : data) {
+            int id = obj.docId();
+            Map<String, Object> map = obj.getSourceAsMap();
+            map.put("id",id);
+            list.add(map);
+        }
+        return new Result(true,"查询成功!",list);
+    }
     //xxl-job自动投标
     @XxlJob("rule")
     @GetMapping("/ab")
@@ -168,7 +234,7 @@ public class BorrowController extends Thread{
                 }
             }
         //图片加水印
-        String name="最可爱最漂亮的女孩";
+        String name="最可爱最漂亮的女孩,我爱你.";
         ImageWatermarkUtils.markImageByText(name,url+filenameimg,null,null);
         //Thread.sleep(3000);
         String substring = filenameimg.substring(0, filenameimg.lastIndexOf("."));
@@ -180,6 +246,7 @@ public class BorrowController extends Thread{
 
         return upload;
     }
+    //上传阿里云测试
 
     /**
      * 查询所有审核通过的借款申请

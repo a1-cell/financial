@@ -39,3 +39,5 @@ xxl:
       logpath: /data/xxl-job/jobhandler
       logretentiondays: -1
     accessToken:
+es:
+  url: 127.0.0.1:9200

@@ -1,6 +1,7 @@
 package com.bw.borrow.mapper;
 
 import io.renren.common.borrow.Borrow;
+import io.renren.common.es.BackList;
 import io.renren.common.product.Product;
 import io.renren.common.userEnttiy.User;
 import io.renren.common.borrow.Rule;
@@ -35,4 +36,6 @@ public interface BorrowMapper {
     List<Rule> getRuleList();
     @Select("select * from product")
     List<Product> getProductList();
+    @Select("select * from blacklist")
+    List<BackList> blacklist();
 }

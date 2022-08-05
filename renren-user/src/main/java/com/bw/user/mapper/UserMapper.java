@@ -1,6 +1,7 @@
 package com.bw.user.mapper;
 
-import io.renren.common.userEnttiy.User;
+
+import com.bw.user.entity.User;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;

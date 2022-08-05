@@ -5,6 +5,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.lettuce.core.RedisClient;
 import io.renren.common.borrow.Borrow;
+import io.renren.common.es.BackList;
 import io.renren.common.product.Product;
 import io.renren.common.result.Result;
 import io.renren.common.userEnttiy.User;
@@ -118,6 +119,10 @@ public class BorrowService {
 
     public List<Product> getProductList() {
         return borrowMapper.getProductList();
+    }
+
+    public List<BackList> blacklist() {
+        return borrowMapper.blacklist();
     }
 
 //    public Result tou(Borrow borrow) {

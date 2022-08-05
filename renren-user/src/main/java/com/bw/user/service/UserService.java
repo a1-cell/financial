@@ -1,8 +1,8 @@
 package com.bw.user.service;
 
+import com.bw.user.entity.Result;
+import com.bw.user.entity.User;
 import com.bw.user.mapper.UserMapper;
-import io.renren.common.result.Result;
-import io.renren.common.userEnttiy.User;
 import org.apache.shiro.crypto.hash.SimpleHash;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
