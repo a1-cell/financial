@@ -1,8 +1,8 @@
 server:
-  port: 9991
+  port: 9992
 spring:
   application:
-    name: renre-check
+    name: renren-check
   cloud:
     nacos:
       discovery:
@@ -13,6 +13,12 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
     password: 2916435196Liu@
+
+  rabbitmq:
+    host: 180.76.108.56
+    port: 5672
+    username: guest
+    password: guest
 mybatis:
   mapper-locations: classpath:/mapper/*Mapper.xml
 #xxl-job
@@ -30,3 +36,5 @@ xxl:
       logpath: /data/xxl-job/jobhandler
       logretentiondays: -1
     accessToken:
+ngork:
+  url: ggs.5gzvip.91tunnel.com

@@ -1,16 +1,15 @@
 package io.renren.modules.check.controller;
-
-import com.xxl.job.core.handler.annotation.XxlJob;
+import io.renren.modules.check.config.WaterMark;
 import org.springframework.stereotype.Component;
 
-import javax.xml.bind.SchemaOutputResolver;
 
 @Component
 public class TestController {
 
-    @XxlJob("jobTest")
-    public void Test(){
-        System.out.println("-----------启动成功");
-    }
+
+//    public static void main(String[] args) {
+//        WaterMark.addWaterMark("E:\\浏览器下载的东西\\测试合同.pdf","E:\\浏览器pdf水印\\测试合同.pdf"，“);
+//    }
+
 
 }
