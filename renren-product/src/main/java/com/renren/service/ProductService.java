@@ -1,7 +1,7 @@
 package com.renren.service;
 
 import com.renren.mapper.ProductMapper;
-import com.renren.pojos.Product;
+import io.renren.common.product.Product;
 import io.renren.common.utils.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

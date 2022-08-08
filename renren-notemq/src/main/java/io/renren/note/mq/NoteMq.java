@@ -15,9 +15,7 @@ import io.renren.note.config.WxTextMessage;
 import org.apache.http.HttpEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.utils.URIBuilder;
-import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
@@ -63,8 +61,6 @@ public class NoteMq {
             //发送短信
             System.out.println(borrow1.getBorrowRen());
             if (time2.before(date1)){
-                System.out.println("微信推送");
-                wxPost();
                 System.out.println("发短信get用户");
 
                 HttpClient client = new HttpClient();
@@ -141,93 +137,14 @@ public class NoteMq {
 //    }
 
 
-//    @XxlJob("jobLiu")
-//    @GetMapping("/oo")
-private static void wxPost() throws Exception {
-//    public void wxPost() throws Exception {
+//    @GetMapping("/wxs")
+    @XxlJob("jobLiu")
+    public void wxPost() throws Exception {
         String access_token = wxsGet();
-        String json="{\n" +
-                "    \"touser\":\"o-cKZ5gFSLW2OL-Tv0VPoFJnQgVg\",\n" +
-                "\n" +
-                "    \"template_id\":\"PKtoWynnudooOq7C6y_0MjuSBLMTq3VB_Mv6-_nwlio\",\n" +
-                "\t\"url\":\"http://weixin.qq.com/download\",\n" +
-                "\n" +
-                "    \"topcolor\":\"#FF0000\",\n" +
-                "\n" +
-                "    \"data\":{\n" +
-                "\n" +
-                "            \"User\": {\n" +
-                "\n" +
-                "                \"value\":\"不差钱先生\",\n" +
-                "\n" +
-                "                \"color\":\"#173177\"\n" +
-                "\n" +
-                "            },\n" +
-                "\n" +
-                "            \"Date\":{\n" +
-                "\n" +
-                "                \"value\":\"08月04日 15时17分\",\n" +
-                "\n" +
-                "                \"color\":\"#173177\"\n" +
-                "\n" +
-                "            },\n" +
-                "\n" +
-                "            \"CardNumber\": {\n" +
-                "\n" +
-                "                \"value\":\"0426\",\n" +
-                "\n" +
-                "                \"color\":\"#173177\"\n" +
-                "\n" +
-                "            },\n" +
-                "\n" +
-                "            \"Type\":{\n" +
-                "\n" +
-                "                \"value\":\"消费\",\n" +
-                "\n" +
-                "                \"color\":\"#173177\"\n" +
-                "\n" +
-                "            },\n" +
-                "\n" +
-                "            \"Money\":{\n" +
-                "\n" +
-                "                \"value\":\"人民币260.00元\",\n" +
-                "\n" +
-                "                \"color\":\"#173177\"\n" +
-                "\n" +
-                "            },\n" +
-                "\n" +
-                "            \"DeadTime\":{\n" +
-                "\n" +
-                "                \"value\":\"06月07日19时24分\",\n" +
-                "\n" +
-                "                \"color\":\"#173177\"\n" +
-                "\n" +
-                "            },\n" +
-                "\n" +
-                "            \"Left\":{\n" +
-                "\n" +
-                "                \"value\":\"6504.09\",\n" +
-                "\n" +
-                "                \"color\":\"#173177\"\n" +
-                "\n" +
-                "            }\n" +
-                "\n" +
-                "    }\n" +
-                "\n" +
-                "}";
-        CloseableHttpClient httpClient = HttpClients.createDefault();
-        String url="https://api.weixin.qq.com/cgi-bin/message/template/send?access_token="+access_token;
-        HttpPost httpPost = new HttpPost(url);
-        httpPost.addHeader("Content-Type", "application/json");
-        httpPost.setEntity(new StringEntity(json,"UTF-8")); //防止中文乱码
-        CloseableHttpResponse execute = httpClient.execute(httpPost);
-        //相应成功
-        HttpEntity entity = execute.getEntity();
-        String s = EntityUtils.toString(entity, "UTF-8");
-        System.out.println(s);
+        String json="{'touser':'o-cKZ5gFSLW2OL-Tv0VPoFJnQgVg', 'template_id':'"+access_token+"','url':'http://weixin.qq.com/download', 'topcolor':'#FF0000', 'data':{ 'User': {'value':'先生','color':'#173177'},'Date':{'value':'08月04日 15时17分','color':'#173177'},'CardNumber': {'value':'0426','color':'#173177'},'Type':{'value':'消费','color':'#173177'},'Money':{'value':'人民币260.00元','color':'#173177'},'DeadTime':{'value':'06月07日19时24分','color':'#173177'},'Left':{'value':'6504.09','color':'#173177'}}}";
 
-        execute.close();
-        httpClient.close();
+
+
     }
 
 
