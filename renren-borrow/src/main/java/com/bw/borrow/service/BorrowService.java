@@ -5,6 +5,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.lettuce.core.RedisClient;
 import io.renren.common.borrow.Borrow;
+import io.renren.common.entity.Rechruld;
 import io.renren.common.es.BackList;
 import io.renren.common.product.Product;
 import io.renren.common.result.Result;
@@ -123,6 +124,32 @@ public class BorrowService {
 
     public List<BackList> blacklist() {
         return borrowMapper.blacklist();
+    }
+
+    public Integer getNum(Integer id) {
+        return borrowMapper.getNum(id);
+    }
+
+    public void updateNum(Integer id) {
+        borrowMapper.updateNum(id);
+    }
+
+    public Rechruld getRechruldById(Integer radio) {
+        return borrowMapper.getRechruldById(radio);
+    }
+
+    public void updateRechruldNum(Integer id, Integer num) {
+        borrowMapper.updateRechruldNum(id,num);
+    }
+
+    public int checkName(String name) {
+        int count=borrowMapper.checkName(name);
+        return count;
+    }
+
+    public Rule checkStatue(String name) {
+        Rule rule=borrowMapper.checkStatue(name);
+        return rule;
     }
 
 //    public Result tou(Borrow borrow) {

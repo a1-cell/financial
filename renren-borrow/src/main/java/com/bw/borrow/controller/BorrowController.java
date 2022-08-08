@@ -9,10 +9,12 @@ import com.bw.borrow.utils.OSSUploadUtil;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.xxl.job.core.handler.annotation.XxlJob;
 import io.renren.common.borrow.Borrow;
+import io.renren.common.entity.Rechruld;
 import io.renren.common.es.BackList;
 import io.renren.common.product.Product;
 import io.renren.common.borrow.Rule;
 import io.renren.common.result.Result;
+import io.swagger.models.auth.In;
 import oracle.jdbc.proxy.annotation.Post;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItem;
@@ -28,8 +30,11 @@ import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.SearchHit;
 import org.elasticsearch.search.SearchHits;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
+import org.redisson.api.RLock;
+import org.redisson.api.RedissonClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
@@ -37,7 +42,9 @@ import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import javax.annotation.Resource;
 import java.io.*;
 import java.math.BigDecimal;
+import java.nio.file.Files;
 import java.util.*;
+import java.util.concurrent.TimeUnit;
 
 @RequestMapping("/v1")
 @RestController
@@ -47,6 +54,8 @@ public class BorrowController extends Thread{
     BorrowService borrowService;
     @Autowired
     RestHighLevelClient restHighLevelClient;
+    @Autowired
+    RedissonClient redissonClient;
 
     @Override
     public void run() {
@@ -57,6 +66,33 @@ public class BorrowController extends Thread{
 
 
 
+    //黑名单查询剩余次数
+    @GetMapping("/getnum/{id}")
+    public Integer getUnm(@PathVariable Integer id){
+        Integer num=borrowService.getNum(id);
+        return num;
+    }
+    //购买查询次数
+    @GetMapping("/resh/{radio}/{id}")
+    @Transactional
+    public Result resh(@PathVariable Integer radio,@PathVariable Integer id) throws InterruptedException {
+        //查询是哪种规格
+        Rechruld rechruld=borrowService.getRechruldById(radio);
+        //调用支付
+
+        RLock lock = redissonClient.getLock("lock"+id);
+        boolean b = lock.tryLock(10, 5, TimeUnit.SECONDS);
+        if(b){
+            try {
+                borrowService.updateRechruldNum(id,rechruld.getNum());
+            }finally {
+                lock.unlock();
+            }
+            return new Result(true,"购买成功!","");
+        }else{
+            return new Result(true,"购买失败，请重新购买!","");
+        }
+    }
     //定时任务查询黑名单库添加到es
     @PostMapping("/sync")
     public Result blacklist(){
@@ -82,14 +118,22 @@ public class BorrowController extends Thread{
     //查询ES
     @PostMapping("/getEs")
     public Result getEs(@RequestBody BackList blackList) throws Exception {
+        //判断查询剩余次数
+        Integer num = borrowService.getNum(blackList.getId());
+        if(num<=0){
+            return new Result(false,"您的查询次数已用完，请及时充值!","");
+        }
+        //修改查询次数
+        borrowService.updateNum(blackList.getId());
         //创建查询请求
         SearchRequest searchRequest = new SearchRequest("bank");
         searchRequest.types("blacklist");
         SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
-        //添加搜索条件
-        MultiMatchQueryBuilder multiMatchQueryBuilder = QueryBuilders.multiMatchQuery(blackList.getUsername(), "username");
-
-        searchSourceBuilder.query(multiMatchQueryBuilder);
+        if(blackList.getUsername()!=null && blackList.getUsername()!=""){
+            //添加搜索条件
+            MultiMatchQueryBuilder multiMatchQueryBuilder = QueryBuilders.multiMatchQuery(blackList.getUsername(), "username");
+            searchSourceBuilder.query(multiMatchQueryBuilder);
+        }
         //加入查询请求
         searchRequest.source(searchSourceBuilder);
         //执行搜索
@@ -140,6 +184,10 @@ public class BorrowController extends Thread{
     //开启自动投标添加规则
     @PostMapping("/addrule")
     public Result addrule(@RequestBody Rule rule){
+        int count=borrowService.checkName(rule.getName());
+        if(count>=1){
+            return new Result(false,"已存在","");
+        }
         rule.setStatue(1);
         borrowService.addrule(rule);
         return new Result(true,"成功","");
@@ -153,6 +201,10 @@ public class BorrowController extends Thread{
     //关闭自动投标
     @GetMapping("/norul")
     public Result norul(String name){
+        Rule rule=borrowService.checkStatue(name);
+        if(rule.getStatue()==0){
+            return new Result(false,"已关闭","");
+        }
         borrowService.norul(name);
         return new Result(true,"关闭成功","");
     }
@@ -264,7 +316,7 @@ public class BorrowController extends Thread{
         return borrowService.tou(product);
     }
     //File转MultipartFile
-   /* private MultipartFile getFile(File file) throws Exception {
+    private MultipartFile getFile(File file) throws Exception {
         FileItem fileItem = new DiskFileItem("copyfile.txt", Files.probeContentType(file.toPath()),false,file.getName(),(int)file.length(),file.getParentFile());
         byte[] buffer = new byte[1024];
         int n;
@@ -283,7 +335,7 @@ public class BorrowController extends Thread{
 
     }
 
-    */
+
 
 
 }
