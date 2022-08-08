@@ -5,6 +5,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.lettuce.core.RedisClient;
 import io.renren.common.borrow.Borrow;
+import io.renren.common.entity.Rechruld;
 import io.renren.common.es.BackList;
 import io.renren.common.product.Product;
 import io.renren.common.result.Result;
@@ -18,6 +19,8 @@ import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 import java.math.BigDecimal;
 import java.util.HashMap;
@@ -132,6 +135,26 @@ public class BorrowService {
     public void updateNum(Integer id) {
         borrowMapper.updateNum(id);
     }
+
+    public Rechruld getRechruldById(Integer radio) {
+        return borrowMapper.getRechruldById(radio);
+    }
+
+    public void updateRechruldNum(Integer id, Integer num) {
+        borrowMapper.updateRechruldNum(id,num);
+    }
+
+    public int checkName(String name) {
+        int count=borrowMapper.checkName(name);
+        return count;
+    }
+
+    public Rule checkStatue(String name) {
+        Rule rule=borrowMapper.checkStatue(name);
+        return rule;
+    }
+
+
 
 //    public Result tou(Borrow borrow) {
 //        //通过编号查询出投标人的金额

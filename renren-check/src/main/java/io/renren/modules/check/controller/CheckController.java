@@ -28,9 +28,20 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
+
+import org.springframework.data.redis.core.StringRedisTemplate;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+
+import java.beans.Transient;
+
+import java.math.BigDecimal;
 
 import java.beans.Transient;
 import java.io.IOException;
