@@ -22,6 +22,8 @@
         <module>renren-admin</module>
         <module>renren-api</module>
         <module>renren-generator</module>
+        <module>loans-service-coupon</module>
+        <module>loans-service-aibank</module>
     </modules>
 
     <properties>

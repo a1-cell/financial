@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.loans.coupon.dao.CouponMapper">
+
+<insert id="insertCoupon" parameterType="com.loans.coupon.pojo.Coupon">
+    insert into tb_coupon(uid,cname,interest,create_time,end_time,tid,`type`,statue,grante,num,used_num,days,money,found_time,max_money) values
+    (#{coupon.uid},#{coupon.cname},#{coupon.interest},#{coupon.createTime},#{coupon.endTime},#{coupon.tid},#{coupon.type},#{coupon.statue},#{coupon.grante},#{coupon.num},#{coupon.userdNum},#{coupon.days},#{coupon.money},#{coupon.foundTime},#{coupon.maxMoney})
+</insert>
+
+
+
+
+</mapper>

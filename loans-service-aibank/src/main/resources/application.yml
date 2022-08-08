@@ -1,0 +1,16 @@
+server:
+  port: 8888
+  servlet:
+    path: /bha-neo-app
+
+# http://localhost:8888/bha-neo-app/lanmaotech/gateway
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://120.48.66.56:3306/bank
+    username: root
+    password: 2916435196Liu@
+  redis:
+    host: 127.0.0.1
+    port: 6379
