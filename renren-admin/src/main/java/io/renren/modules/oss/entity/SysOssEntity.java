@@ -15,7 +15,7 @@ import lombok.EqualsAndHashCode;
 
 /**
  * 文件上传
- * 
+ *
  * @author Mark sunlightcs@gmail.com
  */
 @Data

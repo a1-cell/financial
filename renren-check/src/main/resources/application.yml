@@ -1,0 +1,40 @@
+server:
+  port: 9992
+spring:
+  application:
+    name: renren-check
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 120.48.72.211:8848
+        namespace: be188a42-2c90-487c-aece-802135d27942
+  datasource:
+    url: jdbc:mysql://120.48.66.56:3306/bank?serverTimezone=GMT%2B8&characterEncoding=utf-8&useSSL=false
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: 2916435196Liu@
+
+  rabbitmq:
+    host: 180.76.108.56
+    port: 5672
+    username: guest
+    password: guest
+mybatis:
+  mapper-locations: classpath:/mapper/*Mapper.xml
+#xxl-job
+xxl:
+  job:
+    ##xxl-job 调度中心地址,需要跟我们在一3.2中部署的调度中心地址一致
+    admin:
+      addresses: http://127.0.0.1:7070/xxl-job-admin
+
+    ##执行器的appname,地址端口
+    executor:
+      appname: xxl-job-liu
+      ip:
+      port: 9998
+      logpath: /data/xxl-job/jobhandler
+      logretentiondays: -1
+    accessToken:
+ngork:
+  url: ggs.5gzvip.91tunnel.com

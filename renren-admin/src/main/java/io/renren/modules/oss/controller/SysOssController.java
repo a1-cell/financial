@@ -9,6 +9,7 @@
 package io.renren.modules.oss.controller;
 
 import com.google.gson.Gson;
+import io.renren.modules.oss.service.SysOssService;
 import io.renren.common.annotation.LogOperation;
 import io.renren.common.constant.Constant;
 import io.renren.common.exception.ErrorCode;
@@ -21,7 +22,6 @@ import io.renren.common.validator.group.QiniuGroup;
 import io.renren.modules.oss.cloud.CloudStorageConfig;
 import io.renren.modules.oss.cloud.OSSFactory;
 import io.renren.modules.oss.entity.SysOssEntity;
-import io.renren.modules.oss.service.SysOssService;
 import io.renren.modules.sys.service.SysParamsService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -39,7 +39,7 @@ import java.util.Map;
 
 /**
  * 文件上传
- * 
+ *
  * @author Mark sunlightcs@gmail.com
  */
 @RestController

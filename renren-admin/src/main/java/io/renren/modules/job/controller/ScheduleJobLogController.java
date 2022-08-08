@@ -8,11 +8,11 @@
 
 package io.renren.modules.job.controller;
 
+import io.renren.modules.job.service.ScheduleJobLogService;
 import io.renren.common.constant.Constant;
 import io.renren.common.page.PageData;
 import io.renren.common.utils.Result;
 import io.renren.modules.job.dto.ScheduleJobLogDTO;
-import io.renren.modules.job.service.ScheduleJobLogService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -48,7 +48,7 @@ public class ScheduleJobLogController {
 	@RequiresPermissions("sys:schedule:log")
 	public Result<PageData<ScheduleJobLogDTO>> page(@ApiIgnore @RequestParam Map<String, Object> params){
 		PageData<ScheduleJobLogDTO> page = scheduleJobLogService.page(params);
-		
+
 		return new Result<PageData<ScheduleJobLogDTO>>().ok(page);
 	}
 
@@ -57,7 +57,7 @@ public class ScheduleJobLogController {
 	@RequiresPermissions("sys:schedule:log")
 	public Result<ScheduleJobLogDTO> info(@PathVariable("id") Long id){
 		ScheduleJobLogDTO log = scheduleJobLogService.get(id);
-		
+
 		return new Result<ScheduleJobLogDTO>().ok(log);
 	}
 }

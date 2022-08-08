@@ -8,8 +8,8 @@
 
 package io.renren.modules.sys.service;
 
-import io.renren.common.service.BaseService;
 import io.renren.modules.sys.entity.SysRoleDataScopeEntity;
+import io.renren.common.service.BaseService;
 
 import java.util.List;
 

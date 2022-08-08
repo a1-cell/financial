@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="io.renren.modules.check.mapper.CheckMapper">
+<!--    <select id="list" resultType="io.renren.common.borrow.Borrow" parameterType="io.renren.common.borrow.Borrow">-->
+<!--        select a.borrow_id borrowId,a.borrow_name borrowName,b.username borrowRen,a.borrow_money borrowMoney,a.interest_rate interestRate,-->
+<!--        a.periods,a.back_way backWay,a.borrow_time borrowTime,a.borrow_status borrowStatus,a.behoof,a.userid,a.card_url1 cardUrl1,-->
+<!--        a.card_url2 cardUrl2,.a.pid,a.tid,a.ttid from tb_borrow a LEFT JOIN users b on a.userid=b.userid-->
+<!--        LEFT JOIN product c on a.pid=c.id-->
+<!--        <where>-->
+<!--            <if test="borrowName!=null and borrowName!=''">-->
+<!--                and a.borrow_name like concat('%',#{borrowName},'%')-->
+<!--            </if>-->
+
+<!--        </where>-->
+<!--    </select>-->
+    <select id="list" resultType="io.renren.common.check.Content">
+        select content_id contentId,xi_content xiContent from tb_content
+    </select>
+</mapper>

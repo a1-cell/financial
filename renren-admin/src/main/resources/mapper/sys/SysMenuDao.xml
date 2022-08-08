@@ -42,5 +42,5 @@
 	<select id="getListPid" resultType="io.renren.modules.sys.entity.SysMenuEntity">
 		select * from sys_menu where pid = #{value}
 	</select>
-	
+
 </mapper>

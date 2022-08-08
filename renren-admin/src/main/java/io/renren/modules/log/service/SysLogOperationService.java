@@ -8,10 +8,10 @@
 
 package io.renren.modules.log.service;
 
+import io.renren.modules.log.entity.SysLogOperationEntity;
 import io.renren.common.page.PageData;
 import io.renren.common.service.BaseService;
 import io.renren.modules.log.dto.SysLogOperationDTO;
-import io.renren.modules.log.entity.SysLogOperationEntity;
 
 import java.util.List;
 import java.util.Map;

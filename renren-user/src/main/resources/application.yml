@@ -1,0 +1,25 @@
+server:
+  port: 9111
+
+spring:
+  application:
+    name: renren-user
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 120.48.72.211:8848
+        namespace: be188a42-2c90-487c-aece-802135d27942
+  datasource:
+    url: jdbc:mysql://120.48.66.56:3306/bank?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password: 2916435196Liu@
+ # rabbitmq:
+  #  host: 192.168.57.129
+   # port: 5672
+   # username: guest
+    #password: guest
+
+
+mybatis:
+  mapper-locations: classpath:com/bw/user/mapper/*Mapper.xml

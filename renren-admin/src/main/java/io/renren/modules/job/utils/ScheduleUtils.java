@@ -8,10 +8,10 @@
 
 package io.renren.modules.job.utils;
 
+import io.renren.modules.job.entity.ScheduleJobEntity;
 import io.renren.common.constant.Constant;
 import io.renren.common.exception.ErrorCode;
 import io.renren.common.exception.RenException;
-import io.renren.modules.job.entity.ScheduleJobEntity;
 import org.quartz.*;
 
 /**
@@ -25,14 +25,14 @@ public class ScheduleUtils {
      * 任务调度参数key
      */
     public static final String JOB_PARAM_KEY = "JOB_PARAM_KEY";
-    
+
     /**
      * 获取触发器key
      */
     public static TriggerKey getTriggerKey(Long jobId) {
         return TriggerKey.triggerKey(JOB_NAME + jobId);
     }
-    
+
     /**
      * 获取jobKey
      */
@@ -70,7 +70,7 @@ public class ScheduleUtils {
             jobDetail.getJobDataMap().put(JOB_PARAM_KEY, scheduleJob);
 
             scheduler.scheduleJob(jobDetail, trigger);
-            
+
             //暂停任务
             if(scheduleJob.getStatus() == Constant.ScheduleStatus.PAUSE.getValue()){
             	pauseJob(scheduler, scheduleJob.getId());
@@ -79,7 +79,7 @@ public class ScheduleUtils {
             throw new RenException(ErrorCode.JOB_ERROR, e);
         }
     }
-    
+
     /**
      * 更新定时任务
      */
@@ -92,20 +92,20 @@ public class ScheduleUtils {
             		.withMisfireHandlingInstructionDoNothing();
 
             CronTrigger trigger = getCronTrigger(scheduler, scheduleJob.getId());
-            
+
             //按新的cronExpression表达式重新构建trigger
             trigger = trigger.getTriggerBuilder().withIdentity(triggerKey).withSchedule(scheduleBuilder).build();
-            
+
             //参数
             trigger.getJobDataMap().put(JOB_PARAM_KEY, scheduleJob);
-            
+
             scheduler.rescheduleJob(triggerKey, trigger);
-            
+
             //暂停任务
             if(scheduleJob.getStatus() == Constant.ScheduleStatus.PAUSE.getValue()){
             	pauseJob(scheduler, scheduleJob.getId());
             }
-            
+
         } catch (SchedulerException e) {
             throw new RenException(ErrorCode.JOB_ERROR, e);
         }
@@ -119,7 +119,7 @@ public class ScheduleUtils {
         	//参数
         	JobDataMap dataMap = new JobDataMap();
         	dataMap.put(JOB_PARAM_KEY, scheduleJob);
-        	
+
             scheduler.triggerJob(getJobKey(scheduleJob.getId()), dataMap);
         } catch (SchedulerException e) {
             throw new RenException(ErrorCode.JOB_ERROR, e);

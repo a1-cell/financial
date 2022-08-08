@@ -8,24 +8,24 @@
 
 package io.renren.modules.security.controller;
 
+import io.renren.modules.log.entity.SysLogLoginEntity;
+import io.renren.modules.log.enums.LoginOperationEnum;
+import io.renren.modules.log.enums.LoginStatusEnum;
+import io.renren.modules.log.service.SysLogLoginService;
+import io.renren.modules.security.password.PasswordUtils;
+import io.renren.modules.sys.dto.SysUserDTO;
+import io.renren.modules.sys.enums.UserStatusEnum;
 import io.renren.common.exception.ErrorCode;
 import io.renren.common.exception.RenException;
 import io.renren.common.utils.IpUtils;
 import io.renren.common.utils.Result;
 import io.renren.common.validator.AssertUtils;
 import io.renren.common.validator.ValidatorUtils;
-import io.renren.modules.log.entity.SysLogLoginEntity;
-import io.renren.modules.log.enums.LoginOperationEnum;
-import io.renren.modules.log.enums.LoginStatusEnum;
-import io.renren.modules.log.service.SysLogLoginService;
 import io.renren.modules.security.dto.LoginDTO;
-import io.renren.modules.security.password.PasswordUtils;
 import io.renren.modules.security.service.CaptchaService;
 import io.renren.modules.security.service.SysUserTokenService;
 import io.renren.modules.security.user.SecurityUser;
 import io.renren.modules.security.user.UserDetail;
-import io.renren.modules.sys.dto.SysUserDTO;
-import io.renren.modules.sys.enums.UserStatusEnum;
 import io.renren.modules.sys.service.SysUserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -44,7 +44,7 @@ import java.util.Date;
 
 /**
  * 登录
- * 
+ *
  * @author Mark sunlightcs@gmail.com
  */
 @RestController
@@ -152,5 +152,5 @@ public class LoginController {
 
 		return new Result();
 	}
-	
+
 }

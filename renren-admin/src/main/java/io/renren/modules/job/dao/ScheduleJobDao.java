@@ -8,8 +8,8 @@
 
 package io.renren.modules.job.dao;
 
-import io.renren.common.dao.BaseDao;
 import io.renren.modules.job.entity.ScheduleJobEntity;
+import io.renren.common.dao.BaseDao;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.Map;
@@ -21,7 +21,7 @@ import java.util.Map;
  */
 @Mapper
 public interface ScheduleJobDao extends BaseDao<ScheduleJobEntity> {
-	
+
 	/**
 	 * 批量更新状态
 	 */

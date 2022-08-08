@@ -8,8 +8,8 @@
 
 package io.renren.modules.security.service;
 
-import io.renren.modules.security.user.UserDetail;
 import io.renren.modules.sys.entity.SysUserEntity;
+import io.renren.modules.security.user.UserDetail;
 import io.renren.modules.security.entity.SysUserTokenEntity;
 
 import java.util.List;

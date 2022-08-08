@@ -8,12 +8,12 @@
 
 package io.renren.modules.job.utils;
 
-import io.renren.common.constant.Constant;
-import io.renren.common.exception.ExceptionUtils;
-import io.renren.common.utils.SpringContextUtils;
 import io.renren.modules.job.entity.ScheduleJobEntity;
 import io.renren.modules.job.entity.ScheduleJobLogEntity;
 import io.renren.modules.job.service.ScheduleJobLogService;
+import io.renren.common.constant.Constant;
+import io.renren.common.exception.ExceptionUtils;
+import io.renren.common.utils.SpringContextUtils;
 import org.quartz.JobExecutionContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -45,7 +45,7 @@ public class ScheduleJob extends QuartzJobBean {
 
         //任务开始时间
         long startTime = System.currentTimeMillis();
-        
+
         try {
 			//执行任务
 			logger.info("任务准备执行，任务ID：{}", scheduleJob.getId());
@@ -58,15 +58,15 @@ public class ScheduleJob extends QuartzJobBean {
 			log.setTimes((int)times);
 			//任务状态
 			log.setStatus(Constant.SUCCESS);
-			
+
 			logger.info("任务执行完毕，任务ID：{}  总共耗时：{} 毫秒", scheduleJob.getId(), times);
 		} catch (Exception e) {
 			logger.error("任务执行失败，任务ID：{}", scheduleJob.getId(), e);
-			
+
 			//任务执行总时长
 			long times = System.currentTimeMillis() - startTime;
 			log.setTimes((int)times);
-			
+
 			//任务状态
 			log.setStatus(Constant.FAIL);
 			log.setError(ExceptionUtils.getErrorStackTrace(e));
