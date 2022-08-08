@@ -1,8 +1,9 @@
 package io.renren.common.borrow;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
-public class Borrow {
+public class Borrow implements Serializable {
     private Integer borrowId;
     private String borrowName;
     private String borrowRen;
@@ -19,6 +20,11 @@ public class Borrow {
     private Integer pid;
     private Integer tid;
     private Integer ttid;
+    private String userphone;
+    private Integer creStatus;
+    private Integer uid;
+    private String uname;
+    private String cstatus;
     private String companyname;
     private String companyaddress;
     private String companyphone;
@@ -90,6 +96,46 @@ public class Borrow {
 
     public void setHousemoney(BigDecimal housemoney) {
         this.housemoney = housemoney;
+    }
+
+    public String getCstatus() {
+        return cstatus;
+    }
+
+    public void setCstatus(String cstatus) {
+        this.cstatus = cstatus;
+    }
+
+    public Integer getUid() {
+        return uid;
+    }
+
+    public void setUid(Integer uid) {
+        this.uid = uid;
+    }
+
+    public String getUname() {
+        return uname;
+    }
+
+    public void setUname(String uname) {
+        this.uname = uname;
+    }
+
+    public Integer getCreStatus() {
+        return creStatus;
+    }
+
+    public void setCreStatus(Integer creStatus) {
+        this.creStatus = creStatus;
+    }
+
+    public String getUserphone() {
+        return userphone;
+    }
+
+    public void setUserphone(String userphone) {
+        this.userphone = userphone;
     }
 
     public Integer getBorrowId() {

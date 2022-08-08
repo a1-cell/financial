@@ -93,6 +93,7 @@ public class BorrowController extends Thread{
             return new Result(true,"购买失败，请重新购买!","");
         }
     }
+
     //定时任务查询黑名单库添加到es
     @PostMapping("/sync")
     public Result blacklist(){

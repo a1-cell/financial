@@ -1,0 +1,26 @@
+package io.renren.customer.config;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.scheduling.TaskScheduler;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
+import org.springframework.web.socket.server.standard.ServerEndpointExporter;
+
+@Configuration
+public class WebSocketConfig {
+
+    @Bean
+    public ServerEndpointExporter serverEndpointExporter() {
+        return new ServerEndpointExporter();
+    }
+
+
+    // 解决不能同时使用websocket和spring的定时注解
+    @Bean
+    public TaskScheduler taskScheduler() {
+        ThreadPoolTaskScheduler scheduling = new ThreadPoolTaskScheduler();
+        scheduling.setPoolSize(10);
+        scheduling.initialize();
+        return scheduling;
+    }
+}

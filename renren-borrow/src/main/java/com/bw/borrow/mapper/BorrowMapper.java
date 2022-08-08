@@ -51,4 +51,5 @@ public interface BorrowMapper {
     int checkName(String name);
     @Select("select * from rule where name=#{name}")
     Rule checkStatue(String name);
+
 }

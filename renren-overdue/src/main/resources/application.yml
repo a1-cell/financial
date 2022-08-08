@@ -1,8 +1,8 @@
 server:
-  port: 9205
+  port: 9991
 spring:
   application:
-    name: renren-overdue
+    name: renren-notemq
   cloud:
     nacos:
       discovery:
@@ -13,20 +13,28 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
     password: 2916435196Liu@
+
+  rabbitmq:
+    host: 180.76.108.56
+    port: 5672
+    username: guest
+    password: guest
 mybatis:
   mapper-locations: classpath:/mapper/*Mapper.xml
+#xxl-job
 xxl:
   job:
-    #xxl-job 调度中心地址,需要跟我们在一3.2中部署的调度中心地址一致
+    ##xxl-job 调度中心地址,需要跟我们在一3.2中部署的调度中心地址一致
     admin:
-      addresses: http://localhost:9999/xxl-job-admin
+      addresses: http://127.0.0.1:7070/xxl-job-admin
 
-    #执行器的appname,地址端口
+    ##执行器的appname,地址端口
     executor:
-      appname: mincl
+      appname: xxl-job-liu
       ip:
       port: 9998
       logpath: /data/xxl-job/jobhandler
       logretentiondays: -1
     accessToken:
-
+ngork:
+  url: ggs.5gzvip.91tunnel.com
