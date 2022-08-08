@@ -12,17 +12,8 @@ import io.renren.common.check.Creditor;
 import io.renren.common.exception.EducationException;
 import io.renren.common.result.Result;
 import io.renren.modules.check.service.CheckService;
-import oracle.jdbc.proxy.annotation.Post;
-import org.apache.http.HttpResponse;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.entity.StringEntity;
-import org.apache.http.impl.client.HttpClients;
-import org.apache.http.util.EntityUtils;
-import org.apache.tomcat.util.http.ResponseUtil;
+
 import org.springframework.data.redis.core.StringRedisTemplate;
-import org.apache.shiro.authz.annotation.RequiresPermissions;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,11 +24,10 @@ import org.springframework.web.bind.annotation.*;
 
 
 import java.beans.Transient;
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
+
 import java.math.BigDecimal;
 import java.util.*;
-import java.util.concurrent.TimeUnit;
+
 
 @RequestMapping("/check")
 @RestController
@@ -52,7 +42,7 @@ class CheckController {
 
     @RequestMapping("/list")
     public Result list(){
-        List<Content> list=checkService.list();
+        List<Content> list = checkService.list();
         System.out.println("哈哈哈哈");
         return new Result(true,"查询成功",list);
     }
